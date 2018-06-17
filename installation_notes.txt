@@ -1,0 +1,50 @@
+make a GPT partition table on the ssd
+	make a 1gb partition labeled "boot"
+		must be FAT32 type
+		mark flags with "boot", "esp", and "hidden"
+	format the remainder of the drive as ext4 labeled "OS" or the os name
+
+make a gpt/mbr(msdos) partition table on the hdd
+	make a swap partition that is 1.5x the side of your ram
+		label it swap
+		"linux-swap" type
+	leave an amount of unallocated space that is [reasonable for /tmp and /var]
+		i used 40gb
+	make an ext4 partition that for the remainder of the space
+		type = ext4
+
+assign mount points in solus accordingly and install os (in the os installer gui)
+	the "/" is assigned to the largest ssd partition
+	the "/home" is assigned to largest hdd partition
+	the "swap" is assigned to the swap
+	the boot remains unassigned
+
+============
+check that your home folder is the proper size
+
+
+
+
+
+
+
+==========
+this is how i installed my tplink wifi adapter:
+https://askubuntu.com/questions/904698/tp-link-tl-wn722n-cant-connect-on-17-04
+
+aka
+
+How to fix:
+Add the following line to /etc/NetworkManager/NetworkManager.conf:
+	[device]
+	...
+	wifi.scan-rand-mac-address=0
+Now save the file and restart network manager using:
+	sudo systemctl restart network-manager
+except in solus you use
+	sudo systemctl restart NetworkManager
+Now reboot.
+
+
+
+
