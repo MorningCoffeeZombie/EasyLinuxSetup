@@ -1,5 +1,5 @@
-![](https://www.howtogeek.com/howto/35676/how-to-choose-a-partition-scheme-for-your-linux-pc/)
-![](https://askubuntu.com/questions/7002/how-to-set-up-multiple-hard-drives-as-one-volume)
+https://www.howtogeek.com/howto/35676/how-to-choose-a-partition-scheme-for-your-linux-pc/
+https://askubuntu.com/questions/7002/how-to-set-up-multiple-hard-drives-as-one-volume
 
 ############
 ## SSD Content:
