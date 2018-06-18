@@ -1,0 +1,53 @@
+(https://www.howtogeek.com/howto/35676/how-to-choose-a-partition-scheme-for-your-linux-pc/)
+(https://askubuntu.com/questions/7002/how-to-set-up-multiple-hard-drives-as-one-volume)
+
+############
+## SSD Content:
+############
+/boot	Kernal files for booting the machine (perm storage) (do this as EXT2)
+/root	
+	(/usr, /usr/local, /opt)
+		/opt	Where some programs are stored (perm storage)
+		/usr	Universal System Resources. Files that can be used by many programs freely (perm storage)
+############
+## HDD Content:
+############
+/home	Personal files (active storage) - this should be the last partition on the disk...so you can increase size if needed. DONT encrytp the home folder.
+/tmp	Temporary files (active storage)
+/var	Logs and temporary files (active storage)
+Swap	
+
+############
+## Notes:
+############
+Swap
+The swap size should  = 1.5x to 2x the amount of ram you have
+Could I do ½ the [total size of] swap on the SSD and the other ½ on the HDD?
+                NO- do not swap on an SSD as it will quickly degrade the device into unusability.
+Swap should be partitioned at either the beginning or end of a drive for faster referencing.
+you can just make a swap file: https://www.youtube.com/watch?v=1OEidskpcC0
+	watch @24min
+
+
+############
+## Other:
+############
+/dev	Devices and peripherals connected to the PC
+/etc	System config files (perm storage)
+/lib	Libraries (like DLLs in windows) (perm storage)
+/media	This is where mountable media is accessed...aka flashdrives, iphones, etc
+/mnt	
+/bin	This is where programs live (perm storage) -steam game can be saved to /home/ from within steam settings
+/sbin	More binaries. Where commands live
+
+
+############
+## Goals:
+############
+Install system files, apps & programs on SSD
+Use HDDs for various types of storage
+Enable "TRIM" on the drives to keep them clean automatically
+
+ 
+
+ 
