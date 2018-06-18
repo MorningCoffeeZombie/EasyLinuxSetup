@@ -25,7 +25,7 @@ The swap size should  = 1.5x to 2x the amount of ram you have
 Could I do ½ the [total size of] swap on the SSD and the other ½ on the HDD?
                 NO- do not swap on an SSD as it will quickly degrade the device into unusability.
 Swap should be partitioned at either the beginning or end of a drive for faster referencing.
-you can just make a swap file: https://www.youtube.com/watch?v=1OEidskpcC0
+Or you can just make a swap file: https://www.youtube.com/watch?v=1OEidskpcC0
 	watch @24min
 
 
