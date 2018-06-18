@@ -1,49 +1,55 @@
-make a GPT partition table on the ssd
-	make a 1gb partition labeled "boot"
-		must be FAT32 type
-		mark flags with "boot", "esp", and "hidden"
-	format the remainder of the drive as ext4 labeled "OS" or the os name
 
-make a gpt/mbr(msdos) partition table on the hdd
-	make a swap partition that is 1.5x the side of your ram
-		label it swap
-		"linux-swap" type
-	leave an amount of unallocated space that is [reasonable for /tmp and /var]
-		i used 40gb
-	make an ext4 partition that for the remainder of the space
-		type = ext4
+#################################
+## FROM GPARTED ON THE LIVE DISK:
+#################################
+Make a GPT partition table on the SSD - If your motherboard uses BIOS this partition must be MBR(msdos)
+	Make a 1gb partition labeled "boot"
+		This partition must be FAT32 type (aka 'vfat')
+		Mark flags with "boot", "esp", and "hidden"
+	Format the remainder of the drive as EXT4 labeled "OS" or the os name
 
-assign mount points in solus accordingly and install os (in the os installer gui)
-	the "/" is assigned to the largest ssd partition
-	the "/home" is assigned to largest hdd partition
-	the "swap" is assigned to the swap
-	the boot remains unassigned
+Make a GPT partition table on the HDD - If your motherboard uses BIOS this partition must be MBR(msdos)
+	Make a SWAP partition that is 1.5x the side of your RAM
+		Label it SWAP
+		aka "linux-swap" type
+	Leave an amount of unallocated space that is [reasonable for /tmp and /var]
+		I used 40gb
+	Make an EXT4 partition that for the remainder of the space
+		Partition type = ext4
+
+#################################
+## FROM THE GUI OS INSTALLER:
+#################################
+Assign mount points in Solus accordingly and install OS (in the OS installer GUI)
+	the "/" is assigned to the largest SSD partition
+	the "/home" is assigned to largest HDD partition
+	the "swap" is assigned to the SWAP type
+	the "boot" partition remains unassigned
 
 ============
-check that your home folder is the proper size
+Check that your home folder is the proper size
+Continue the GUI installation and complete
 
 
 
 
 
-
-
-==========
-this is how i installed my tplink wifi adapter:
+#################################
+## ON THE FULLY INSTALLED OS:
+#################################
+This is how I installed my TP-Link  WiFi adapter:
 https://askubuntu.com/questions/904698/tp-link-tl-wn722n-cant-connect-on-17-04
 
-aka
-
-How to fix:
-Add the following line to /etc/NetworkManager/NetworkManager.conf:
+How to add the external TP-Link adapter to Linux distros:
+Add the following lines to /etc/NetworkManager/NetworkManager.conf:
 	[device]
 	...
 	wifi.scan-rand-mac-address=0
-Now save the file and restart network manager using:
+Now save the file and restart network manager using (assuming Debian based Linux):
 	sudo systemctl restart network-manager
-except in solus you use
+If you're in Solus use this instead:
 	sudo systemctl restart NetworkManager
-Now reboot.
+Reboot if effects are not instant.
 
 
 
