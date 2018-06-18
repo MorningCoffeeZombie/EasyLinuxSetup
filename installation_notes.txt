@@ -35,7 +35,7 @@ Continue the GUI installation and complete
 
 
 #################################
-## ON THE FULLY INSTALLED OS:
+## ON THE FULLY INSTALLED OS (if your WiFi device isn't working):
 #################################
 This is how I installed my TP-Link  WiFi adapter:
 https://askubuntu.com/questions/904698/tp-link-tl-wn722n-cant-connect-on-17-04
@@ -50,6 +50,28 @@ Now save the file and restart network manager using (assuming Debian based Linux
 If you're in Solus use this instead:
 	sudo systemctl restart NetworkManager
 Reboot if effects are not instant.
+
+
+
+
+#################################
+## ON THE FULLY INSTALLED OS (if your kernal is not 'current'):
+#################################
+Run the below command to check your current kernel and what video drivers you are using:
+	inxi -Fx
+If your kernel is not current and you are on generic drivers AND you installed the OS as described above:
+Navigate to /etc/fstab and add the following lines:
+	## I added this to correct video drivers and kernel compatibility 
+	UUID=x /boot vfat defaults 0 0
+Replace the 'x' in 'UUID=x' with the UUID of the /boot partition you made above
+	You may find this information in the 'Disks' or 'gParted' tools
+Reboot to test your changes
+If it worked run the following commands:
+	clr-boot-manager update
+	eopkg up
+	clr-boot-manager update
+Once complete use DoFlisky to install the correct/latest drivers
+
 
 
 
