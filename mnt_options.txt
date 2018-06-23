@@ -1,0 +1,56 @@
+ALL METHODS:
+Login as 'init 1' or emergency boot mode (Ctrl+Alt+F2) to prevent tmp files from becoming 'in-use'
+or I could chroot in from a live USB...
+cp -aX /var /var.BAK
+cp -aX /tmp /tmp.BAK
+cp /etc/fstab /home/$USER/Desktop/fstab.BAK
+
+
+
+METHOD 1
+--------
+
+Use chmod 1777 to give the correct permissions to the destination partition.
+chmod 1777 /tmp
+
+Then edit /etc/fstab as follows:
+UUID=67841494-f82b-4b9d-88b0-6ce0a779209f /var defaults 0 0
+UUID=f356c952-2698-4d0c-bc0d-1f9c46b34afb /tmp defaults 0 0
+
+
+METHOD 2
+--------
+
+Use binds in the fstab file
+https://ubuntuforums.org/showthread.php?t=1780616
+/home/jail/var /var bind defaults,bind,noatime,mode=0755 0 0
+/home/jail/tmp /tmp bind defaults,bind,noatime,mode=1777 0 0
+
+
+
+METHOD 3 - DID NOT WORK
+--------
+
+Sym link the files:
+https://www.linuxos.pro/move-tmp-and-vartmp-to-a-separate-filesystem/
+or
+mkdir /drive2/tmp  
+chmod 1777  /drive2/tmp  
+rm -rf /tmp  
+ln -s /drive2/tmp /tmp  
+
+
+
+
+
+
+METHOD 4
+--------
+https://www.youtube.com/watch?v=S5QzXMJuyRk
+
+
+
+
+
+
+
