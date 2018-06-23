@@ -1,0 +1,15 @@
+COMMAND			USAGE
+-------			-----
+inxi -Fx		Display detailed system info
+eopkg up		Upgrade Solus & packages to most resent version
+eopkg rdb		Refresh the installed-package database
+usysconf run -f		Used as a 'quick fix' solution to Solus issues
+clr-boot-manager update	
+init 1			Initiate single user mode (so certain /var and /tmp files aren't being written to)
+init 5			Initiate [regular] user mode...this undoes init 1
+
+
+
+
+
+
