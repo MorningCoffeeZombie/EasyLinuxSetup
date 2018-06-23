@@ -1,6 +1,7 @@
 #!/bin/sh
 
 
+sudo eopkg install nano -y
 sudo eopkg install vim -y
 sudo eopkg install screenfetch -y
 sudo eopkg install steam -y
