@@ -50,18 +50,22 @@ https://www.youtube.com/watch?v=S5QzXMJuyRk
 step 1: in the installed os, check the dev paths for the partition to house tmpvar
 
 # run these commands from a live disk
+FROM=nvme0n1p2
+TO=sda3
+ISODATE=20180623
+
 mkdir /mnt/root
-mount /dev/nvme0n1p2 /mnt/root
+mount /dev/$FROM /mnt/root
 mkdir /mnt/newvar
 # im not sure what the 'sdb1' should actually be
-mount /dev/sda3 /mnt/newvar
+mount /dev/$TO /mnt/newvar
 cd /mnt/root/var
 cp -R * /mnt/newvar
-cp /mnt/root/etc/fstab /mnt/root/etc/fstab.BAK20180623
+cp /mnt/root/etc/fstab /mnt/root/etc/fstab.BAK$ISODATE
 echo #these are my additions for method 4 to mount var>>/mnt/root/etc/fstab
-echo /dev/sda3 /var ext4 defaults 0 0>>/mnt/root/etc/fstab
+echo /dev/$TO /var ext4 defaults 0 0>>/mnt/root/etc/fstab
 cd
-mv /mnt/root/var /mnt/root/var.BAK20180623
+mv /mnt/root/var /mnt/root/var.BAK$ISODATE
 mkdir /mnt/root/var
 
 umount /mnt/root
