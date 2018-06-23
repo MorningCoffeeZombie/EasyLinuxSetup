@@ -51,15 +51,15 @@ step 1: in the installed os, check the dev paths for the partition to house tmpv
 
 # run these commands from a live disk
 mkdir /mnt/root
-mount /dev/sda3 /mnt/root
+mount /dev/nvme0n1p2 /mnt/root
 mkdir /mnt/newvar
 # im not sure what the 'sdb1' should actually be
-mount /dev/sdb1 /mnt/newvar
+mount /dev/sda3 /mnt/newvar
 cd /mnt/root/var
 cp -R * /mnt/newvar
 cp /mnt/root/etc/fstab /mnt/root/etc/fstab.BAK20180623
 echo #these are my additions for method 4 to mount var>>/mnt/root/etc/fstab
-echo /dev/sdb1 /var ext4 defaults 0 0>>/mnt/root/etc/fstab
+echo /dev/sda3 /var ext4 defaults 0 0>>/mnt/root/etc/fstab
 cd
 mv /mnt/root/var /mnt/root/var.BAK20180623
 mkdir /mnt/root/var
