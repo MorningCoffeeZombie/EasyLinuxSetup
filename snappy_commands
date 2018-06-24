@@ -1,0 +1,20 @@
+SNAPPY COMMANDS
+===============
+
+# Install Snappy and a webbased GUI
+sudo install snapd
+sudo snap install snapweb
+
+# Run the below command and copy the output to a web browers with the address of "localhost:4200"
+snapweb.generate-token
+# If you poweroff the snap interface (on the settings menu) you will reboot your entire machine.
+
+# Find snap packages in remote repos with
+sudo snap find $APPNAME
+
+# List all installed snaps
+snap list
+
+# See all details and commands for a snap
+snap info $APPNAME
+
