@@ -1,0 +1,9 @@
+FLATPAK COMMANDS
+================
+
+
+# Install flatpak
+sudo eopkg install flatpak
+
+# Visit https://flathub.org to find paks to install
+# Futher help http://docs.flatpak.org/en/latest/using-flatpak.html
