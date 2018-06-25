@@ -1,4 +1,5 @@
 Setup the TRIM command to keep SSD clean
+	https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
 Install snapd/flatpak
 	Install Discord
 VMs
