@@ -12,8 +12,8 @@ sudo eopkg install virtualbox-current -y
 sudo eopkg install notepadqq -y
 sudo eopkg install wine -y
 
-
-sudo eopkg install lightdm-gtk-greeter-settings -y
+# Non-essential settings configurator
+#sudo eopkg install lightdm-gtk-greeter-settings -y
 
 
 
