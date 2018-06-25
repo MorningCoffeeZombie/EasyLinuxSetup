@@ -13,7 +13,7 @@ eopkg li >>/home/defaultapps.lst
 cp /etc/NetworkManager/NetworkManager.conf /home/NetworkManager.conf.BAK
 echo [device]>>/etc/NetworkManager/NetworkManager.conf
 echo wifi.scan-rand-mac-address=0>>/etc/NetworkManager/NetworkManager.conf
-echo Home wifi password is: YJRbLRRhPQ8844
+echo YJRbLRRhPQ8844
 
 # reminders
 echo change the password to something easier with passwd
