@@ -13,4 +13,5 @@ Cryptomining
 install dolphin browser
 	make it primary browser
 	make it searchable in superkey
-
+Settings > Details > Default apps
+	Make "image viewer" default instead of GIMP
