@@ -16,3 +16,4 @@ install dolphin browser
 Settings > Details > Default apps
 	Make "image viewer" default instead of GIMP
 add "new file" to right click menu
+make gedit searchable by 'notes"
