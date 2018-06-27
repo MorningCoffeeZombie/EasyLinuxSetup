@@ -10,10 +10,16 @@ VMs
 	Copy VMWare VMs to VBox
 	or Install VMWare player from links I sent to my phone
 Cryptomining
-install dolphin browser
-	make it primary browser
-	make it searchable in superkey
+*install dolphin browser
+*	make it primary browser
+*	make it searchable in superkey
+*		/usr/share/applications/org.kde.dolphin.desktop
+*		Keywords=Files;File;Browse;Browser;Explore;Explorer
+*		Comment=Browse local files & folders
+*make gedit searchable by 'notes"
+*		/usr/share/applications/org.kde.dolphin.desktop
+*		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 Settings > Details > Default apps
 	Make "image viewer" default instead of GIMP
 add "new file" to right click menu
-make gedit searchable by 'notes"
+show icons on desktop
