@@ -1,4 +1,5 @@
 install linux-current-headers
+Move /var and /tmp to HDD
 use: eopkg ur
 	this will update the repo
 Setup the TRIM command to keep SSD clean
@@ -9,5 +10,7 @@ VMs
 	Copy VMWare VMs to VBox
 	or Install VMWare player from links I sent to my phone
 Cryptomining
-Move /var and /tmp to HDD
+install dolphin browser
+	make it primary browser
+	make it searchable in superkey
 
