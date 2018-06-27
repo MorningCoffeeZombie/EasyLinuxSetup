@@ -15,3 +15,4 @@ install dolphin browser
 	make it searchable in superkey
 Settings > Details > Default apps
 	Make "image viewer" default instead of GIMP
+add "new file" to right click menu
