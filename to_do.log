@@ -29,11 +29,11 @@ SKIP	dolphin might take away desktop icons and you can't easily add a "new file"
 add "new file" to right click menu
 show icons on desktop
 find a pdf editor
-change login screen bg
-	default locaiton is /usr/share/backgrounds/solus/
-	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
-	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
-
+*change login screen bg
+*	default locaiton is /usr/share/backgrounds/solus/
+SKIP	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
+SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
+*	rename the existing jpg to .jpg.BAK and copy the new file into its place
 
 
 autostart apps with the "desktop settings" menu
