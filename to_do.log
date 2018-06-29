@@ -37,6 +37,7 @@ SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/light
 
 install github
 install grsync
+install (some emulators)
 
 autostart apps with the "desktop settings" menu
 
