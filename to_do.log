@@ -35,6 +35,8 @@ SKIP	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
 SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
 *	rename the existing jpg to .jpg.BAK and copy the new file into its place
 
+install github
+install grsync
 
 autostart apps with the "desktop settings" menu
 
