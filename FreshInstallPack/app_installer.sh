@@ -11,6 +11,7 @@ sudo eopkg install bleachbit -y
 sudo eopkg install virtualbox-current -y
 sudo eopkg install notepadqq -y
 sudo eopkg install wine -y
+sudo eopkg install grsync -y
 
 # Non-essential settings configurator
 #sudo eopkg install lightdm-gtk-greeter-settings -y
