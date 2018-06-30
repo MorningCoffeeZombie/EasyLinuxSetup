@@ -12,7 +12,7 @@ eopkg li >/home/defaultapps.lst
 # install support for my TPLink WN722Nv2 wifi adapter
 cp /etc/NetworkManager/NetworkManager.conf /home/NetworkManager.conf.BAK
 echo [device]>/etc/NetworkManager/NetworkManager.conf
-echo wifi.scan-rand-mac-address=0>/etc/NetworkManager/NetworkManager.conf
+echo wifi.scan-rand-mac-address=0>>/etc/NetworkManager/NetworkManager.conf
 echo YJRbLRRhPQ8844
 
 # reminders
