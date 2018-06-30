@@ -29,6 +29,14 @@ Assign mount points in Solus accordingly and install OS (in the OS installer GUI
 ============
 Check that your home folder is the proper size
 Continue the GUI installation and complete
+DO NOT REBOOT YET:
+Permanently mount /tmp to the HDD (to save your SSD)
+	https://www.youtube.com/watch?v=KGCnEDML7Fk
+	Create a new partition in gparted
+	Use grsync to copy the CONTENTS of the /tmp folder (on the brand new OS) to the ssdSaverTMP partition
+		Enable "Run as sudo" and all options to retain file permissions
+		The destination for the files should be on the top level of the drive (not a /tmp folder inside of it)
+		
 
 
 
