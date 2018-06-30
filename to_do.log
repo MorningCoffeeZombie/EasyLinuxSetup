@@ -2,7 +2,7 @@
 SKIP = needs a lot of work before prod
 =====================
 
-*install linux-current-headers
+
 *Move /var and /tmp to HDD
 *use: eopkg ur
 *	this will update the repo
@@ -21,9 +21,6 @@ SKIP*		/usr/share/applications/org.kde.dolphin.desktop
 SKIP*		Keywords=Files;File;Browse;Browser;Explore;Explorer
 SKIP*		Comment=Browse local files & folders
 SKIP	dolphin might take away desktop icons and you can't easily add a "new file" to right click menu
-*make gedit searchable by 'notes"
-*		/usr/share/applications/org.gnome.gedit.desktop
-*		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 *Settings > Details > Default apps
 *	Make "image viewer" default instead of GIMP
 add "new file" to right click menu
@@ -43,6 +40,14 @@ autostart apps with the "desktop settings" menu
 
 
 
+
+
+============
+DONE - things that are done that i would redo if ever needed in the future
+============
+*make gedit searchable by 'notes"
+*		/usr/share/applications/org.gnome.gedit.desktop
+*		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 
 
 
