@@ -21,19 +21,12 @@ SKIP*		/usr/share/applications/org.kde.dolphin.desktop
 SKIP*		Keywords=Files;File;Browse;Browser;Explore;Explorer
 SKIP*		Comment=Browse local files & folders
 SKIP	dolphin might take away desktop icons and you can't easily add a "new file" to right click menu
-*Settings > Details > Default apps
-*	Make "image viewer" default instead of GIMP
 add "new file" to right click menu
 show icons on desktop
 find a pdf editor
-*change login screen bg
-*	default locaiton is /usr/share/backgrounds/solus/
-SKIP	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
-SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
-*	rename the existing jpg to .jpg.BAK and copy the new file into its place
+
 
 install github
-install grsync
 install (some emulators)
 
 autostart apps with the "desktop settings" menu
@@ -48,8 +41,13 @@ DONE - things that are done that i would redo if ever needed in the future
 *make gedit searchable by 'notes"
 *		/usr/share/applications/org.gnome.gedit.desktop
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
-
-
+*change login screen bg
+*	default locaiton is /usr/share/backgrounds/solus/
+SKIP	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
+SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
+*	rename the existing jpg to .jpg.BAK and copy the new file into its place
+*Settings > Details > Default apps
+*	Make "image viewer" default instead of GIMP
 
 
 
