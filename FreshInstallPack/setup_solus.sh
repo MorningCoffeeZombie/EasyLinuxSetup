@@ -4,10 +4,10 @@ echo run me as sudo -s
 
 # cerate a snapshot and save history log if a rollback is needed
 eopkg history -s
-eopkg history >>/home/eopkghistory.log
+eopkg history >/home/eopkghistory.log
 
 # list all default apps and save to list
-eopkg li >>/home/defaultapps.lst
+eopkg li >/home/defaultapps.lst
 
 # install support for my TPLink WN722Nv2 wifi adapter
 cp /etc/NetworkManager/NetworkManager.conf /home/NetworkManager.conf.BAK
