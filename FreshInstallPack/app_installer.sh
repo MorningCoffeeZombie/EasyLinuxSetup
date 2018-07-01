@@ -17,5 +17,7 @@ sudo eopkg install git -y
 # Non-essential settings configurator
 #sudo eopkg install lightdm-gtk-greeter-settings -y
 
+# LTS v. Current kernels
+# https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
 
 
