@@ -17,6 +17,7 @@ Make a GPT partition table on the HDD - If your motherboard uses BIOS this parti
 	Make an EXT4 partition that for the remainder of the space
 		Partition type = ext4
 
+
 #################################
 ## FROM THE GUI OS INSTALLER:
 #################################
@@ -36,10 +37,10 @@ Permanently mount /tmp to the HDD (to save your SSD)
 	Use grsync to copy the CONTENTS of the /tmp folder (on the brand new OS) to the ssdSaverTMP partition
 		Enable "Run as sudo" and all options to retain file permissions
 		The destination for the files should be on the top level of the drive (not a /tmp folder inside of it)
-		
-
-
-
+	Run the sync and add a line to the /etc/fstab file similar to the ones below:
+		# Move /tmp from SSD to HDD
+		UUID=x   /tmp    ext2    defaults    0   0
+Reboot		
 
 
 #################################
@@ -60,8 +61,6 @@ If you're in Solus use this instead:
 Reboot if effects are not instant.
 
 
-
-
 #################################
 ## ON THE FULLY INSTALLED OS (if your kernal is not 'current'):
 #################################
@@ -79,6 +78,23 @@ If it worked run the following commands:
 	eopkg up
 	clr-boot-manager update
 Once complete use DoFlisky to install the correct/latest drivers
+
+
+#################################
+## ON THE FULLY INSTALLED OS (if you prefer the LTS kernel):
+#################################
+Install linux-lts with:
+	sudo eopkg install linux-lts
+	clr-boot-manater set-timeout 5
+	clr-boot-manager update
+Run the FreshInstallPack/app_installer.sh file in this repo.
+
+
+
+
+
+
+
 
 
 
