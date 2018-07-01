@@ -1,14 +1,14 @@
 #!/bin/sh
 
 
-sudo eopkg install linux-current-headers -y
+# All kernels
+sudo eopkg install linux-headers -y
 sudo eopkg install nano -y
 sudo eopkg install vim -y
 sudo eopkg install screenfetch -y
 sudo eopkg install steam -y
 sudo eopkg install gimp -y
 sudo eopkg install bleachbit -y
-sudo eopkg install virtualbox-current -y
 sudo eopkg install notepadqq -y
 sudo eopkg install wine -y
 sudo eopkg install grsync -y
@@ -19,5 +19,36 @@ sudo eopkg install git -y
 
 # LTS v. Current kernels
 # https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
+
+
+# LTS Kernel
+sudo eopkg install bbswitch -y
+sudo eopkg install broadcom-sta -y
+sudo eopkg install linux-lts-headers -y
+sudo eopkg install nvidia-304-glx-driver -y
+sudo eopkg install nvidia-340-glx-driver -y
+sudo eopkg install nvidia-glx-driver -y
+sudo eopkg install razer-drivers -y
+sudo eopkg install v4l2loopback -y
+sudo eopkg install vhba-module -y
+sudo eopkg install virtualbox-common -y
+
+
+
+
+
+# Current Kernel
+sudo eopkg install bbswitch-current -y
+sudo eopkg install broadcom-sta-current -y
+sudo eopkg install linux-current-headers -y
+sudo eopkg install nvidia-304-glx-driver-current -y
+sudo eopkg install nvidia-340-glx-driver-current -y
+sudo eopkg install nvidia-glx-driver-current -y
+sudo eopkg install razer-drivers-current -y
+sudo eopkg install v4l2loopback-current -y
+sudo eopkg install vhba-module-current -y
+sudo eopkg install virtualbox-current -y
+
+
 
 
