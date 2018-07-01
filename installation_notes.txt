@@ -88,6 +88,10 @@ Install linux-lts with:
 	clr-boot-manater set-timeout 5
 	clr-boot-manager update
 Run the FreshInstallPack/app_installer.sh file in this repo.
+Set the LTS kernel to load via default
+	Edit /boot/loader/loader.conf
+	Set default to match your installed kernel
+
 
 
 
