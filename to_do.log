@@ -6,8 +6,6 @@ SKIP = needs a lot of work before prod
 *Move /var to HDD???
 *use: eopkg ur
 *	this will update the repo
-Setup the TRIM command to keep SSD clean
-	https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
 Install snapd/flatpak
 	Install Discord
 VMs
@@ -49,7 +47,10 @@ SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/light
 *Settings > Details > Default apps
 *	Make "image viewer" default instead of GIMP
 *Move /tmp to HDD
-
+Setup the TRIM command to keep SSD clean
+	I chose the fstab method (adding 'discard' to options) from the youtube video
+	https://www.youtube.com/watch?v=9kl0bYLFXSg
+	https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
 
 
 
