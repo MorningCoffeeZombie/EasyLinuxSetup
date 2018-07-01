@@ -95,8 +95,13 @@ Set the LTS kernel to load via default
 
 
 
-
-
+#################################
+## ON THE FULLY INSTALLED OS (if you want to keep SSDs clean):
+#################################
+Setup the TRIM command to run periodically
+	Add "discard" to the list of <opts> in the /etc/fstab file
+	Or set a monthly cron job to run "fstrim /" or another mount point on an SSD
+	https://www.youtube.com/watch?v=9kl0bYLFXSg
 
 
 
