@@ -54,6 +54,8 @@ sudo eopkg install git -y
 
 # Non-essential settings configurator
 #sudo eopkg install lightdm-gtk-greeter-settings -y
+#sudo eopkg install snapd -y
+#sudo eopkg install flatpak -y
 
 
 
