@@ -3,7 +3,7 @@ SKIP = needs a lot of work before prod
 =====================
 
 
-*Move /var and /tmp to HDD
+*Move /var to HDD???
 *use: eopkg ur
 *	this will update the repo
 Setup the TRIM command to keep SSD clean
@@ -21,8 +21,8 @@ SKIP*		/usr/share/applications/org.kde.dolphin.desktop
 SKIP*		Keywords=Files;File;Browse;Browser;Explore;Explorer
 SKIP*		Comment=Browse local files & folders
 SKIP	dolphin might take away desktop icons and you can't easily add a "new file" to right click menu
+SKIP	show icons on desktop
 add "new file" to right click menu
-show icons on desktop
 find a pdf editor
 
 
@@ -48,7 +48,7 @@ SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/light
 *	rename the existing jpg to .jpg.BAK and copy the new file into its place
 *Settings > Details > Default apps
 *	Make "image viewer" default instead of GIMP
-
+*Move /tmp to HDD
 
 
 
