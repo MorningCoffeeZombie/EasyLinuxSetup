@@ -27,8 +27,10 @@ Get Logitech G15 to work
 	LCD screen, G1-G18 keys
 make sure KolourPaint is superkey searchable by "paint"
 Prt Scr - print screen button does not work
+	https://help.ubuntu.com/community/LogitechG15
 	https://solus-project.com/forums/viewtopic.php?t=1106
 	http://people.uleth.ca/~daniel.odonnell/Blog/custom-keyboard-in-linuxx11
+	https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions?action=show&redirect=Howto%3A+Custom+keyboard+layout+definitions
 
 
 install github
