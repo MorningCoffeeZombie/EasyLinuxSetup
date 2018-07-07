@@ -23,6 +23,12 @@ SKIP	dolphin might take away desktop icons and you can't easily add a "new file"
 SKIP	show icons on desktop
 add "new file" to right click menu
 find a pdf editor
+Get Logitech G15 to work
+	LCD screen, G1-G18 keys
+make sure KolourPaint is superkey searchable by "paint"
+Prt Scr - print screen button does not work
+	https://solus-project.com/forums/viewtopic.php?t=1106
+	http://people.uleth.ca/~daniel.odonnell/Blog/custom-keyboard-in-linuxx11
 
 
 install github
