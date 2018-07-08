@@ -1,14 +1,10 @@
 #!/bin/sh
 
-# Building a tool to switch the package manager called. This will help switch eopkg for apt-get or pacman, etc.
-#if [[ $(dmesg | head -1) = *Solus* ]]; then
-#PACKAGER =eopkg
-#fi
-
+# Making Firefox better by installing the user.js file
+cd user.js /home/$USER/.mozilla/firefox/*.*/user.js
 
 # LTS v. Current kernels
 # https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
-
 
 # LTS Kernel
 if [[ $(uname -r) = *lts* ]]; then
@@ -66,3 +62,12 @@ sudo eopkg install kolourpaint -y
 
 
 
+
+#########################
+## DEV / UNUSED RESOURCES
+#########################
+
+# Building a tool to switch the package manager called. This will help switch eopkg for apt-get or pacman, etc.
+#if [[ $(dmesg | head -1) = *Solus* ]]; then
+#PACKAGER =eopkg
+#fi
