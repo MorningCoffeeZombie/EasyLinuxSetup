@@ -24,7 +24,6 @@ SKIP	show icons on desktop
 find a pdf editor
 Get Logitech G15 to work
 	LCD screen, G1-G18 keys
-make sure KolourPaint is superkey searchable by "paint"
 Prt Scr - print screen button does not work
 	https://help.ubuntu.com/community/LogitechG15
 	https://solus-project.com/forums/viewtopic.php?t=1106
@@ -49,7 +48,7 @@ autostart apps with the "desktop settings" menu
 ============
 DONE - things that are done that i would redo if ever needed in the future
 ============
-*make gedit searchable by 'notes" and screenshot searchable by 'snipping'
+*make gedit searchable by 'notes" and screenshot searchable by 'snipping' and kolourpaint searchable by "paint"
 *		/usr/share/applications/org.gnome.gedit.desktop
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 make num-lock on when booting
