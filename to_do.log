@@ -70,6 +70,8 @@ Setup the TRIM command to keep SSD clean
 *	/home/$USER/Templates and create a blank text doc
 *make 'name file' the default when saving, not search
 *	nautalus > preferences > search & preview > full text search set as default [unchecked]
+*make nautilus list view smaller
+*	in dconf Editor, see org.gnome.nautilus.preferences.default-zoom-level
 
 
 
