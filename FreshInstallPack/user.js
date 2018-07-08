@@ -17,6 +17,8 @@ user_pref("extensions.getAddons.maxResults", 25);	// Amount of results to displa
 //user_pref("browser.download.dir", /home/rdogg/Desktop);	// Change the download directory
 user_pref("browser.startup.homepage", https://www.google.com/);	// Default homepage
 user_pref("browser.tabs.warnOnClose", false);	// Warn me before closing multiple tabs. Default = true
+user_pref("browser.newtabpage.activity-stream.showSponsored", false);	// Show sponsored content on 'new tab' page. Default = true
+user_pref("browser.shell.checkDefaultBrowser", false);	// Bug you to make Firefox your default browser.
 
 
 // COMPATABILITY
