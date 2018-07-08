@@ -18,12 +18,14 @@ user_pref("extensions.getAddons.maxResults", 25);	// Amount of results to displa
 user_pref("browser.startup.homepage", https://www.google.com/);	// Default homepage
 user_pref("browser.tabs.warnOnClose", false);	// Warn me before closing multiple tabs. Default = true
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);	// Show sponsored content on 'new tab' page. Default = true
-user_pref("browser.shell.checkDefaultBrowser", false);	// Bug you to make Firefox your default browser.
 user_pref("accessibility.force_disabled", 1);	// Disbale 'accessibility' mode for the handicapped. Default = 0.
+user_pref("extensions.pocket.enabled", false);	// Disable the 'pocket' thing. Default = true
 
 
 // COMPATABILITY
 user_pref("extensions.checkCompatibility", false);	// Enable/Disable compatability checks for addons. Default = ture
+user_pref("general.warnOnAboutConfig", false);	// Don't warn users when visiting 'about:config'. Default = true
+user_pref("browser.shell.checkDefaultBrowser", false);	// Bug you to make Firefox your default browser.
 
 
 // CONNECTIVITY
