@@ -47,6 +47,7 @@ fi
 # reminders
 echo change the password to something easier with passwd
 clr-boot-manager set-timeout 5
+clr-boot-manager update
 echo if "clr-boot-manager update" has issues, add a line like this to fstab:
 echo UUID=1FE3-4160 /boot vfat defaults 0 0 
 echo I have already created a backup of fstab your desktop at $BAKDIR/fstab.BAK-$TODAY
