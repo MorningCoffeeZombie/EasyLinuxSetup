@@ -53,7 +53,10 @@ DONE - things that are done that i would redo if ever needed in the future
 *make gedit searchable by 'notes"
 *		/usr/share/applications/org.gnome.gedit.desktop
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
+make num-lock on when booting
+	'x > dm > slick-greeter > activate-numlock'
 *change login screen bg
+*	use the 'dconf' program and navigate to 'x > dm > slick-greeter > background'
 *	default locaiton is /usr/share/backgrounds/solus/
 SKIP	echo [greeter]>>/etc/lightdm/lightdm-gtk-greeter.conf
 SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/lightdm-gtk-greeter.conf
