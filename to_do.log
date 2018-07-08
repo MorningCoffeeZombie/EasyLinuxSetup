@@ -31,6 +31,11 @@ Prt Scr - print screen button does not work
 	https://solus-project.com/forums/viewtopic.php?t=1106
 	http://people.uleth.ca/~daniel.odonnell/Blog/custom-keyboard-in-linuxx11
 	https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions?action=show&redirect=Howto%3A+Custom+keyboard+layout+definitions
+	xmodmap -pke	lists all key bindings
+	seykeycodes
+	xev	package to download
+	list of keysyms	
+
 
 
 install github
