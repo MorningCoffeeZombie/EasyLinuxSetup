@@ -50,7 +50,7 @@ autostart apps with the "desktop settings" menu
 ============
 DONE - things that are done that i would redo if ever needed in the future
 ============
-*make gedit searchable by 'notes"
+*make gedit searchable by 'notes" and screenshot searchable by 'snipping'
 *		/usr/share/applications/org.gnome.gedit.desktop
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 make num-lock on when booting
