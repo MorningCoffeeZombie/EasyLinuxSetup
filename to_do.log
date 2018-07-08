@@ -21,7 +21,6 @@ SKIP*		Keywords=Files;File;Browse;Browser;Explore;Explorer
 SKIP*		Comment=Browse local files & folders
 SKIP	dolphin might take away desktop icons and you can't easily add a "new file" to right click menu
 SKIP	show icons on desktop
-add "new file" to right click menu
 find a pdf editor
 Get Logitech G15 to work
 	LCD screen, G1-G18 keys
@@ -68,7 +67,8 @@ Setup the TRIM command to keep SSD clean
 	I chose the fstab method (adding 'discard' to options) from the youtube video
 	https://www.youtube.com/watch?v=9kl0bYLFXSg
 	https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
-
+*add "new file" to right click menu
+*	/home/$USER/Templates and create a blank text doc
 
 
 
