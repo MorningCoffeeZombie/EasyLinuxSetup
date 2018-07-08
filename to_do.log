@@ -68,6 +68,8 @@ Setup the TRIM command to keep SSD clean
 	https://www.digitalocean.com/community/tutorials/how-to-configure-periodic-trim-for-ssd-storage-on-linux-servers
 *add "new file" to right click menu
 *	/home/$USER/Templates and create a blank text doc
+*make 'name file' the default when saving, not search
+*	nautalus > preferences > search & preview > full text search set as default [unchecked]
 
 
 
