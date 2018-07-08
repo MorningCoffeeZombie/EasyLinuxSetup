@@ -34,10 +34,10 @@ Prt Scr - print screen button does not work
 	xmodmap -pke	lists all key bindings
 	seykeycodes
 	xev	package to download
-	list of keysyms	
-
-
-
+	list of keysyms	wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
+	
+	
+	
 install github
 install (some emulators)
 
