@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Building a tool to switch the package manager called. This will help switch eopkg for apt-get or pacman, etc.
+#if [[ $(dmesg | head -1) = *Solus* ]]; then
+#PACKAGER =eopkg
+#fi
+
 
 # LTS v. Current kernels
 # https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
