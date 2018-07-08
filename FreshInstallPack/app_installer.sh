@@ -41,6 +41,7 @@ fi
 
 # All kernels
 sudo eopkg install linux-headers -y
+sudo eopkg install make -y
 sudo eopkg install nano -y
 sudo eopkg install vim -y
 sudo eopkg install screenfetch -y
