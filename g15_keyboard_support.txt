@@ -1,0 +1,22 @@
+https://wiki.archlinux.org/index.php/Logitech_Gaming_Keyboards
+https://gnome15.org/downloads/manual-install/
+
+
+
+
+
+
+METHOD 1
+========
+sudo eopkg install -c system.devel #this is Solus' version of build-essential
+	https://dev.solus-project.com/T1541
+	https://solus-project.com/forums/viewtopic.php?t=2335
+
+
+
+
+
+
+
+
+
