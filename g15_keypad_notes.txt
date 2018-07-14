@@ -1,0 +1,68 @@
+COMMAND					USAGE
+=============================================
+
+localectl list-x11-keymap-models	Show availables models of keyboards
+localectl list-x11-keymap-layouts	Region codes
+localectl list-x11-keymap-variants	QWERTY v QWERZ type stuff
+localectl list-x11-keymap-options	
+xev					Trace keysyms, keycodes and [button pressed]
+nano /etc/X11/xorg.conf.d/00-keyboard.conf	Edit the default xkb layouts for your computer
+xkbcomp					
+xmodmap					
+xmodmap -pke				Print currently used keycode assignments
+xmodmap -e "keycode 132 = XF86XK_AudioStop"	Example of how to reassign a key
+cd /usr/share/X11/xkb			Go to the configuration files for XKB
+setxkbmap -print -verbose 10		Check your current XKB configuration
+showkeycode -s				Shows the code for the key when pressed. Ex: 0xbd
+setkeycodes				Read the manual (see the bolded example in the Theory section). You can change the keycode and the key assignment number.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================
+WHAT IVE DONE
+===================
+set default keyboard to logitech_g15
+	nano /etc/X11/xorg.conf.d/00-keyboard.conf
+added "logitechg15	=	g15(logitech_g15)" to this the "! model	=	geometry" section of the evdev file:
+	nano /user/share/X11/xkb/rules/evdev
+
+	
+I need to create a /user/share/X11/xkb/geometry mapping for the new layout
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://medium.com/@damko/a-simple-humble-but-comprehensive-guide-to-xkb-for-linux-6f1ad5e13450
+
+
+
+
+
