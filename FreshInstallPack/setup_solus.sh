@@ -8,8 +8,12 @@ TODAY=`date '+%Y%m%d-%H%M'`
 echo You are logged in as $USER. For best results use your regular account.
 echo 
 
+echo "Enter the UUID of your /boot drive "
+read BOOTUUID
+echo your uuid is $BOOTUUID
+
 while true; do
-    read -p "Install WiFi support? " yn
+    read -p "Install WiFi adapter support? " yn
     case $yn in
         [Yy]* ) WIFI="install"; break;;
         [Nn]* ) WIFI="skip"; break;;
@@ -39,19 +43,19 @@ eopkg li >$BAKDIR/defaultapps_$TODAY.lst
 if [ $WIFI = "install" ]; then
 echo Backing up files before appending...
 sudo cp /etc/NetworkManager/NetworkManager.conf $BAKDIR/NetworkManager.conf.BAK-$TODAY
-sudo echo [device]>/etc/NetworkManager/NetworkManager.conf
+sudo echo >>/etc/NetworkManager/NetworkManager.conf
+sudo echo [device]>>/etc/NetworkManager/NetworkManager.conf
 sudo echo wifi.scan-rand-mac-address=0>>/etc/NetworkManager/NetworkManager.conf
 echo YJRbLRRhPQ8844
 fi
 
-# reminders
-echo change the password to something easier with passwd
+# Change fstab to reflect proper /boot drive.
 clr-boot-manager set-timeout 5
 clr-boot-manager update
-echo if "clr-boot-manager update" has issues, add a line like this to fstab:
-echo UUID=1FE3-4160 /boot vfat defaults 0 0 
 echo I have already created a backup of fstab your desktop at $BAKDIR/fstab.BAK-$TODAY
 cp /etc/fstab $BAKDIR/fstab.BAK-$TODAY
+sudo echo \# Added by $USER on $TODAY for kernel support >>/etc/fstab
+sudo echo UUID=$BOOTUUID /boot vfat defaults 0 0 >>/etc/fstab
 echo Once /boot is mounted, run DoFlicky (Solus hardware detector) to install nvidia drivers
 
 # update and install things
@@ -59,3 +63,15 @@ sudo eopkg up
 
 # have user check kernel and drivers
 inxi -Fx
+
+
+
+
+
+#################
+#UNUSED RESOURCES
+#################
+
+#echo change the password to something easier with passwd
+
+
