@@ -7,10 +7,11 @@ TODAY=`date '+%Y%m%d-%H%M'`
 # Getting started
 echo You are logged in as $USER. For best results use your regular account.
 echo 
+#if [ ir -r | grep root]="root"
 
 echo "Enter the UUID of your /boot drive "
 read BOOTUUID
-echo your uuid is $BOOTUUID
+echo You entered $BOOTUUID as the UUID. This is the wrong, restar this script.  
 
 while true; do
     read -p "Install WiFi adapter support? " yn
