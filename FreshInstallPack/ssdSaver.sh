@@ -1,4 +1,6 @@
 #!/bin/sh
+# Dependencies for full support: rsync
+
 
 TODAYSTD=`date '+%m/%d/%Y'`
 
@@ -96,13 +98,23 @@ read DEVICE
 
 
 echo 
-# Recap the entered variables
 echo You have entered the following: 
-echo /boot	$BOOTUUID	vfat \(mandatory\)
-echo /tmp	$TMPUUID	$TMPTYPE
-echo /var	$VARUUID	$VARTYPE
-echo Device	$DEVICE
+echo ROOT DEVICE	$DEVICE
+echo MOUNT POINT	PARTITION TYPE	UUID
+echo /boot	vfat \(mandatory\)	$BOOTUUID
+echo /tmp	$TMPTYPE	$TMPUUID
+echo /var	$VARTYPE	$VARUUID
 echo 
+if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
+	echo The /boot UUID may not be on the same partition.
+	echo Please restart program, exiting now.
+	exit
+fi
+if [ $TMPUUID = $VARUUID ]; then
+	echo Multi partition mounting is not yet supported by ${0##*/}.
+	echo Please restart program, exiting now.
+	exit
+fi
 while true; do
     read -p "Is this correct? (y/n) " yn
     case $yn in
@@ -117,11 +129,9 @@ done
 # MAKE ADDITIONS TO FSTAB
 #########################
 
+
 #sudo mount $DEVICE /run/media/live/
 #sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/etc/fstab
-
-# check the boot options are correct (0 0 or 0 1?)
-# also need to mount drive and rsync the files over
 #if [ $SSDBOOT = "install" ]; then
 #	sudo echo UUID=$BOOTUUID /boot vfat defaults 0 0 >>/run/media/live/etc/fstab
 	# vfat is hardcoded as UEFI boot must be vfat
@@ -139,9 +149,13 @@ done
 ##############################
 
 
+#if [ $SSDTMP = "install" ]; then
 
+#fi
 
+#if [ $SSDVAR = "install" ]; then
 
+#fi
 
 
 
@@ -159,7 +173,14 @@ exit
 
 
 
+###################
+# DEV NOTES / TO DO
+###################
 
+# check the fstab boot options are correct (0 0 or 0 1?)
+# make sure the same UUID isn't used twice
+# i'd like to just detect the partition type, not have to ask the user
+# i'd like to format the review/recap section into a nicely readable table
 
 
 
