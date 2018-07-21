@@ -21,6 +21,22 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
+if [ $SSDBOOT = "install" ]; then
+	PS3='Enter your /boot partition type: '
+	options=("vfat" "ADVANCED" "Quit")
+	select partition in "${options[@]}"
+	do
+		case $partition in
+		"vfat")
+			BOOTTYPE=$partition; echo "$partition entered"; break;;
+		"ADVANCED")
+			echo "\"I know what I'm doing\" they said..."; read BOOTTYPE; echo "$partition entered"; break;;
+		"Quit")
+			echo "Quiting program"; exit; break;;
+		*) echo "invalid option $REPLY";;
+		esac
+	done
+fi
 
 # SSD support for /tmp
 while true; do
@@ -135,8 +151,7 @@ done
 #sudo mount $DEVICE /run/media/live/
 #sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/etc/fstab
 #if [ $SSDBOOT = "install" ]; then
-#	sudo echo UUID=$BOOTUUID /boot vfat defaults 0 0 >>/run/media/live/etc/fstab
-	# vfat is hardcoded as UEFI boot must be vfat
+#	sudo echo UUID=$BOOTUUID /boot $BOOTTYPE defaults 0 0 >>/run/media/live/etc/fstab
 #fi
 #if [ $SSDTMP = "install" ]; then
 #	sudo echo UUID=$TMPUUID /tmp $TMPTYPE defaults 0 1 >>/run/media/live/etc/fstab
@@ -183,7 +198,7 @@ exit
 # i'd like to just detect the partition type, not have to ask the user
 # fstab section is ready, just commented out for testing purposes
 # need to figure out rsync, not on a live disk by default...
-
+# BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
 
 
 
