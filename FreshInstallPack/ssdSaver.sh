@@ -109,12 +109,12 @@ if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
 	echo The /boot UUID may not be on the same partition.
 	echo Please restart program, exiting now.
 	exit
-fi
+fi&>/dev/null
 if [ $TMPUUID = $VARUUID ]; then
 	echo Multi partition mounting is not yet supported by ${0##*/}.
 	echo Please restart program, exiting now.
 	exit
-fi
+fi&>/dev/null
 while true; do
     read -p "Is this correct? (y/n) " yn
     case $yn in
@@ -178,7 +178,6 @@ exit
 ###################
 
 # check the fstab boot options are correct (0 0 or 0 1?)
-# make sure the same UUID isn't used twice
 # i'd like to just detect the partition type, not have to ask the user
 # i'd like to format the review/recap section into a nicely readable table
 
