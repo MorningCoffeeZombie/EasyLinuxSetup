@@ -3,6 +3,8 @@
 
 
 TODAYSTD=`date '+%m/%d/%Y'`
+BOLDFONT=$(tput bold)
+NORMALFONT=$(tput sgr0)
 
 
 #######################
@@ -98,12 +100,12 @@ read DEVICE
 
 
 echo 
-echo You have entered the following: 
-echo ROOT DEVICE	$DEVICE
-echo MOUNT POINT	PARTITION TYPE	UUID
-echo /boot	vfat \(mandatory\)	$BOOTUUID
-echo /tmp	$TMPTYPE	$TMPUUID
-echo /var	$VARTYPE	$VARUUID
+echo ${BOLDFONT}You have entered the following: ${NORMALFONT}
+printf ${BOLDFONT}"ROOT DEVICE:${NORMALFONT} \t $DEVICE \n"
+printf ${BOLDFONT}"MOUNT \t FORMAT  UUID \n"${NORMALFONT}
+printf "/boot \t vfat \t $BOOTUUID \n"
+printf "/tmp \t $TMPTYPE \t $TMPUUID \n"
+printf "/var \t $VARTYPE \t $VARUUID \n"
 echo 
 if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
 	echo The /boot UUID may not be on the same partition.
@@ -179,7 +181,8 @@ exit
 
 # check the fstab boot options are correct (0 0 or 0 1?)
 # i'd like to just detect the partition type, not have to ask the user
-# i'd like to format the review/recap section into a nicely readable table
+# fstab section is ready, just commented out for testing purposes
+# need to figure out rsync, not on a live disk by default...
 
 
 
