@@ -166,6 +166,10 @@ done
 ##############################
 
 
+# https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+# move from /run/media/live/tmp/ to [UUID]/
+# rsync needs 1. sudo throughout 2. -a to retain permissions 3. probably -v or --progress 4. -delete t clear the destination dir 5. rename the source dirs so they arent used at reboot
+sudo eopkg install rsync
 #if [ $SSDTMP = "install" ]; then
 
 #fi
@@ -195,9 +199,10 @@ exit
 ###################
 
 # check the fstab boot options are correct (0 0 or 0 1?)
+# move the font vars to my cli cheat sheet
 # i'd like to just detect the partition type, not have to ask the user
 # fstab section is ready, just commented out for testing purposes
-# need to figure out rsync, not on a live disk by default...
+# need to figure out rsync, it's not preinstalled on a live disk by default...
 # BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
 
 
