@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Making Firefox better by installing the user.js file
-cd user.js /home/$USER/.mozilla/firefox/*.*/user.js
+cp resource_firefox_user.js /home/$USER/.mozilla/firefox/*.*/user.js
 
 # LTS v. Current kernels
 # https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
