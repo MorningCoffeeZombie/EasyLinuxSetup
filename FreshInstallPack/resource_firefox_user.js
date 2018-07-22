@@ -8,18 +8,20 @@
 
 // RESOURCE USAGE
 user_pref("config.trim_on_minimize", true);	// Default = false (and does not exist). Lowers RAM usage when minimized
+user_pref("toolkit.cosmeticAnimations.enabled", false);	// Default = true. Disabling flashy animations to save RAM 
 
 
 // UI
 user_pref("browser.urlbar.clickSelectsAll", true);	// Default = false. Select all text when you click in the URL bar
 user_pref("security.dialog_enable_delay", 0);	// The amount of miliseconds to wait before allowing user to install new addon. Default = 1000
 user_pref("extensions.getAddons.maxResults", 25);	// Amount of results to display when searching for addons. Default = 15
-//user_pref("browser.download.dir", /home/rdogg/Desktop);	// Change the download directory
+//user_pref("browser.download.dir", /home/$USER/Desktop);	// Change the download directory
 user_pref("browser.startup.homepage", https://www.google.com/);	// Default homepage
 user_pref("browser.tabs.warnOnClose", false);	// Warn me before closing multiple tabs. Default = true
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);	// Show sponsored content on 'new tab' page. Default = true
 user_pref("accessibility.force_disabled", 1);	// Disbale 'accessibility' mode for the handicapped. Default = 0.
 user_pref("extensions.pocket.enabled", false);	// Disable the 'pocket' thing. Default = true
+user_pref("layout.spellcheckDefault", 2);	// Default = 1. Enable spell check everywhere not just multiline text fields. "0" disables entirely
 
 
 // COMPATABILITY
