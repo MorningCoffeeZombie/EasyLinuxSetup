@@ -1,5 +1,6 @@
 #!/bin/sh
 # Dependencies for full support: rsync
+# This script is to be used on the live disk, after installtion has finished.
 
 
 TODAYSTD=`date '+%m/%d/%Y'`
@@ -169,7 +170,7 @@ done
 # https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
 # move from /run/media/live/tmp/ to [UUID]/
 # rsync needs 1. sudo throughout 2. -a to retain permissions 3. probably -v or --progress 4. -delete t clear the destination dir 5. rename the source dirs so they arent used at reboot
-sudo eopkg install rsync
+sudo eopkg install rsync -y
 #if [ $SSDTMP = "install" ]; then
 
 #fi
