@@ -3,6 +3,8 @@
 # Making Firefox better by installing the user.js file
 cp resource_firefox_user.js /home/$USER/.mozilla/firefox/*.*/user.js
 
+sudo eopkg up
+
 # LTS v. Current kernels
 # https://solus-project.com/articles/troubleshooting/boot-management/en/#installing-an-alternative-kernel
 
