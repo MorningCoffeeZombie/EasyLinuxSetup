@@ -1,9 +1,10 @@
 #!/bin/sh
-# Dependencies for full support: rsync
+# Dependencies for full support: rsync. Rsync will be installed later in the script. 
 # This script is to be used on the live disk, after installtion has finished.
 
 
 TODAYSTD=`date '+%m/%d/%Y'`
+TODAYISO=`date '+%Y%m%d-%H%M'`
 BOLDFONT=$(tput bold)
 NORMALFONT=$(tput sgr0)
 
@@ -17,7 +18,7 @@ NORMALFONT=$(tput sgr0)
 while true; do
     read -p "Are you installing on an SSD or a UEFI system? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; break;;
+        [Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; BOOTDEVICE=`findfs UUID=$BOOTUUID`; break;;
         [Nn]* ) SSDBOOT="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -43,7 +44,7 @@ fi
 while true; do
     read -p "Boot /tmp from another drive (SSD support)? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; break;;
+        [Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; TMPDEVICE=`findfs UUID=$TMPUUID`; break;;
         [Nn]* ) SSDTMP="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -76,7 +77,7 @@ fi
 while true; do
     read -p "Boot /var from another drive (SSD support)? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; break;;
+        [Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; VARDEVICE=`findfs UUID=$VARUUID`; break;;
         [Nn]* ) SSDVAR="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -119,10 +120,10 @@ read DEVICE
 echo 
 echo ${BOLDFONT}You have entered the following: ${NORMALFONT}
 printf ${BOLDFONT}"ROOT DEVICE:${NORMALFONT} \t $DEVICE \n"
-printf ${BOLDFONT}"MOUNT \t FORMAT  UUID \n"${NORMALFONT}
-printf "/boot \t vfat \t $BOOTUUID \n"
-printf "/tmp \t $TMPTYPE \t $TMPUUID \n"
-printf "/var \t $VARTYPE \t $VARUUID \n"
+printf ${BOLDFONT}"MOUNT \t DEVICE \t FORMAT  UUID \n"${NORMALFONT}
+printf "/boot \t $BOOTDEVICE \t $BOOTTYPE \t $BOOTUUID \n"
+printf "/tmp \t $TMPDEVICE \t $TMPTYPE \t $TMPUUID \n"
+printf "/var \t $VARDEVICE \t $VARTYPE \t $VARUUID \n"
 echo 
 if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
 	echo The /boot UUID may not be on the same partition.
@@ -149,17 +150,17 @@ done
 #########################
 
 
-#sudo mount $DEVICE /run/media/live/
-#sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/etc/fstab
-#if [ $SSDBOOT = "install" ]; then
-#	sudo echo UUID=$BOOTUUID /boot $BOOTTYPE defaults 0 0 >>/run/media/live/etc/fstab
-#fi
-#if [ $SSDTMP = "install" ]; then
-#	sudo echo UUID=$TMPUUID /tmp $TMPTYPE defaults 0 1 >>/run/media/live/etc/fstab
-#fi
-#if [ $SSDVAR = "install" ]; then
-#	sudo echo UUID=$VARUUID /var $VARTYPE defaults 0 1 >>/run/media/live/etc/fstab
-#fi
+sudo mount $DEVICE /run/media/live/
+sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/etc/fstab
+if [ $SSDBOOT = "install" ]; then
+	sudo echo UUID=$BOOTUUID /boot $BOOTTYPE defaults 0 0 >>/run/media/live/etc/fstab
+fi
+if [ $SSDTMP = "install" ]; then
+	sudo echo UUID=$TMPUUID /tmp $TMPTYPE defaults 0 1 >>/run/media/live/etc/fstab
+fi
+if [ $SSDVAR = "install" ]; then
+	sudo echo UUID=$VARUUID /var $VARTYPE defaults 0 1 >>/run/media/live/etc/fstab
+fi
 
 
 ##############################
@@ -167,24 +168,24 @@ done
 ##############################
 
 
-# https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
-# move from /run/media/live/tmp/ to [UUID]/
 # rsync needs 1. sudo throughout 2. -a to retain permissions 3. probably -v or --progress 4. -delete t clear the destination dir 5. rename the source dirs so they arent used at reboot
 sudo eopkg install rsync -y
-#if [ $SSDTMP = "install" ]; then
+if [ $SSDTMP = "install" ]; then
+	sudo rsync -a -delete --progress /run/media/live/tmp/ $TMPDEVICE/
+	sudo mv /tmp /tmp.BAK$TODAYISO
+fi
 
-#fi
-
-#if [ $SSDVAR = "install" ]; then
-
-#fi
-
-
-
-
+if [ $SSDVAR = "install" ]; then
+	sudo rsync -a -delete --progress /run/media/live/var/ $VARDEVICE/
+	sudo mv /var /var.BAK$TODAYISO
+fi
 
 
-#umount $DEVICE
+
+
+
+
+umount $DEVICE
 exit
 ##################
 # UNUSED RESOURCES
@@ -200,14 +201,10 @@ exit
 ###################
 
 # check the fstab boot options are correct (0 0 or 0 1?)
-# move the font vars to my cli cheat sheet
 # i'd like to just detect the partition type, not have to ask the user
-# fstab section is ready, just commented out for testing purposes
-# need to figure out rsync, it's not preinstalled on a live disk by default...
+# rsync, is not preinstalled on a live disk by default...
 # BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
-
-
-
+# rsync help:	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
 
 
 
