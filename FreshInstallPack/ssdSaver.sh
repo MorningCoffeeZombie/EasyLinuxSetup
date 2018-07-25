@@ -202,6 +202,7 @@ exit
 
 # check the fstab boot options are correct (0 0 or 0 1?)
 # i'd like to just detect the partition type, not have to ask the user
+	# https://www.thegeekstuff.com/2011/04/identify-file-system-type/
 # rsync, is not preinstalled on a live disk by default...
 # BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
 # rsync help:	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
