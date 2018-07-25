@@ -9,10 +9,6 @@ echo You are logged in as $USER. For best results use your regular account.
 echo 
 #if [ ir -r | grep root]="root"
 
-echo "Enter the UUID of your /boot drive: "
-read BOOTUUID
-echo You entered $BOOTUUID as the UUID. This is the wrong, restar this script.  
-
 while true; do
     read -p "Install WiFi adapter support? (y/n) " yn
     case $yn in
@@ -30,7 +26,6 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-
 
 
 # create a snapshot and save history log if a rollback is needed
@@ -55,9 +50,6 @@ clr-boot-manager set-timeout 5
 clr-boot-manager update
 echo I have already created a backup of fstab your desktop at $BAKDIR/fstab.BAK-$TODAYISO
 cp /etc/fstab $BAKDIR/fstab.BAK-$TODAYISO
-sudo echo \# Added by $USER on $TODAYISO for kernel support >>/etc/fstab
-sudo echo UUID=$BOOTUUID /boot vfat defaults 0 0 >>/etc/fstab
-echo Once /boot is mounted, run DoFlicky (Solus hardware detector) to install nvidia drivers
 
 # update and install things
 sudo eopkg up
