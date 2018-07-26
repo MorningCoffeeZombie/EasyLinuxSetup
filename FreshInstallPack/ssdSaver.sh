@@ -18,93 +18,31 @@ NORMALFONT=$(tput sgr0)
 while true; do
     read -p "Are you installing on an SSD or a UEFI system? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; BOOTDEVICE=`findfs UUID=$BOOTUUID`; break;;
+        [Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; BOOTDEVICE=`findfs UUID=$BOOTUUID`; BOOTTYPE=`blkid -o export $BOOTDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
         [Nn]* ) SSDBOOT="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
-if [ $SSDBOOT = "install" ]; then
-	PS3='Enter your /boot partition type: '
-	options=("vfat" "ADVANCED" "Quit")
-	select partition in "${options[@]}"
-	do
-		case $partition in
-		"vfat")
-			BOOTTYPE=$partition; echo "$partition entered"; break;;
-		"ADVANCED")
-			echo "\"I know what I'm doing\" they said..."; read BOOTTYPE; echo "$partition entered"; break;;
-		"Quit")
-			echo "Quiting program"; exit; break;;
-		*) echo "invalid option $REPLY";;
-		esac
-	done
-fi
 
 # SSD support for /tmp
 while true; do
     read -p "Boot /tmp from another drive (SSD support)? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; TMPDEVICE=`findfs UUID=$TMPUUID`; break;;
+        [Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; TMPDEVICE=`findfs UUID=$TMPUUID`; TMPTYPE=`blkid -o export $TMPDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
         [Nn]* ) SSDTMP="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
-if [ $SSDTMP = "install" ]; then
-	PS3='Enter your /tmp partition type: '
-	options=("vfat" "ext2" "ext3" "ext4" "ntfs" "Quit")
-	select partition in "${options[@]}"
-	do
-		case $partition in
-		"vfat")
-			TMPTYPE=$partition; echo "$partition entered"; break;;
-		"ext2")
-			TMPTYPE=$partition; echo "$partition entered"; break;;
-		"ext3")
-			TMPTYPE=$partition; echo "$partition entered"; break;;
-		"ext4")
-			TMPTYPE=$partition; echo "$partition entered"; break;;
-		"ntfs")
-			TMPTYPE=$partition; echo "$partition entered"; break;;
-		"Quit")
-			echo "Quiting program"; exit; break;;
-		*) echo "invalid option $REPLY";;
-		esac
-	done
-fi
-
 # SSD support for /var
 while true; do
     read -p "Boot /var from another drive (SSD support)? (y/n) " yn
     case $yn in
-        [Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; VARDEVICE=`findfs UUID=$VARUUID`; break;;
+        [Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; VARDEVICE=`findfs UUID=$VARUUID`; VARYPE=`blkid -o export $VARDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
         [Nn]* ) SSDVAR="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
-
-if [ $SSDVAR = "install" ]; then
-	PS3='Enter your /tmp partition type: '
-	options=("vfat" "ext2" "ext3" "ext4" "ntfs" "Quit")
-	select partition in "${options[@]}"
-	do
-		case $partition in
-		"vfat")
-			VARTYPE=$partition; echo "$partition entered"; break;;
-		"ext2")
-			VARTYPE=$partition; echo "$partition entered"; break;;
-		"ext3")
-			VARTYPE=$partition; echo "$partition entered"; break;;
-		"ext4")
-			VARTYPE=$partition; echo "$partition entered"; break;;
-		"ntfs")
-			VARTYPE=$partition; echo "$partition entered"; break;;
-		"Quit")
-			echo "Quiting program"; exit; break;;
-		*) echo "invalid option $REPLY";;
-		esac
-	done
-fi
 
 # Where will the / be? Used for editing the proper /etc/fstab.
 echo "Enter device name of the new (non-live) root system: "
@@ -143,6 +81,7 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
+
 
 
 #########################
@@ -200,12 +139,10 @@ exit
 # DEV NOTES / TO DO
 ###################
 
-# check the fstab boot options are correct (0 0 or 0 1?)
-# i'd like to just detect the partition type, not have to ask the user
+# Script now just detects the partition type, do not have to ask the user
 	# https://www.thegeekstuff.com/2011/04/identify-file-system-type/
+	# https://unix.stackexchange.com/questions/60723/how-do-i-know-if-a-partition-is-ext2-ext3-or-ext4
 # rsync, is not preinstalled on a live disk by default...
 # BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
 # rsync help:	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
-
-
 
