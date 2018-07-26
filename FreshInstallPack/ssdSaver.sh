@@ -64,7 +64,7 @@ printf "/tmp \t $TMPDEVICE \t $TMPTYPE \t $TMPUUID \n"
 printf "/var \t $VARDEVICE \t $VARTYPE \t $VARUUID \n"
 echo 
 if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
-	echo The /boot UUID may not be on the same partition.
+	echo The /boot UUID may not be share its partition.
 	echo Please restart program, exiting now.
 	exit
 fi&>/dev/null
@@ -163,6 +163,7 @@ echo "Root permissions are required to install and use rsync "
 # Using a benign echo command to trigger password
 sudo echo "Initiating"
 
+#sudo -N
 #if [ "$(id -u)" -ne 0 ]; then
 #	echo "Permissions denied. Script will now exit"
 #	exit
