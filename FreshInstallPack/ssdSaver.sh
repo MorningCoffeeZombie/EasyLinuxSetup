@@ -44,7 +44,7 @@ while true; do
     esac
 done
 
-# Where will the / be? Used for editing the proper /etc/fstab.
+# Where will the / (/root) be? Used for editing the proper /etc/fstab.
 echo "Enter device name of the new (non-live) root system: "
 echo "Example: /dev/sda1"
 read DEVICE
@@ -77,12 +77,96 @@ while true; do
     read -p "Is this correct? (y/n) " yn
     case $yn in
         [Yy]* ) break;;
-        [Nn]* ) echo "Please restart program, exiting now"; exit; break;;
+        [Nn]* ) echo "Entering override mode"; OVERRIDE=true; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 
+#################
+# OVERRIDE MODULE
+#################
+
+
+if [ $OVERRIDE = "true" ]; then
+	PS3='What was wrong: '
+	options=("/boot" "/tmp" "/var" "The new /root device" "Multiple" "Nothing, please go back" "Quit")
+	select wrong in "${options[@]}"
+	do
+		case $wrong in
+		"/boot")
+			BOOTWRONG=true; break;;
+		"/tmp")
+			TMPWRONG=true; break;;
+		"/var")
+			VARWRONG=true; break;;
+		"The new /root device")
+			DEVICEWRONG=true; break;;
+		"Multiple")
+			ALLWRONG=true; echo "Everything is wrong. We'll try this the hard way"; break;;
+		"Nothing, please go back")
+			echo "This script will now continue as-is"; break;;
+		"Quit")
+			echo "Quiting program"; exit; break;;
+		*) echo "Invalid option $REPLY";;
+		esac
+done
+fi
+
+if [ $BOOTWRONG = "true" ]; then
+	echo "Enter your /boot device name"
+	read BOOTDEVICE
+	echo "Enter your /boot partition type (remember FAT32=vfat)"
+	read BOOTTYPE
+fi
+
+if [ $TMPWRONG = "true" ]; then
+	echo "Enter your /tmp device name"
+	read TMPDEVICE
+	echo "Enter your /tmp partition type (remember FAT32=vfat)"
+	read TMPTYPE
+fi
+
+if [ $VARWRONG = "true" ]; then
+	echo "Enter your /var device name"
+	read VARDEVICE
+	echo "Enter your /var partition type (remember FAT32=vfat)"
+	read VARTYPE
+fi
+
+if [ $DEVICEWRONG = "true" ]; then
+	echo "Enter destination /root device"
+	read DEVICE
+fi
+
+if [ $ALLWRONG = "true" ]; then
+	echo "Enter your /boot device name"
+	read BOOTDEVICE
+	echo "Enter your /boot partition type (remember FAT32=vfat)"
+	read BOOTTYPE
+	echo "Enter your /tmp device name"
+	read TMPDEVICE
+	echo "Enter your /tmp partition type (remember FAT32=vfat)"
+	read TMPTYPE
+	echo "Enter your /var device name"
+	read VARDEVICE
+	echo "Enter your /var partition type (remember FAT32=vfat)"
+	read VARTYPE
+fi
+
+
+##############
+# SUDO TRIGGER
+##############
+
+echo "Root permissions are required to install and use rsync "
+# Using a benign echo command to trigger password
+sudo echo "Initiating"
+
+#if [ "$(id -u)" -ne 0 ]; then
+#	echo "Permissions denied. Script will now exit"
+#	exit
+#fi
 
 #########################
 # MAKE ADDITIONS TO FSTAB
@@ -139,6 +223,7 @@ exit
 # DEV NOTES / TO DO
 ###################
 
+# with this push the RECAP and OVERRIDE sections have bugs
 # Script now just detects the partition type, do not have to ask the user
 	# https://www.thegeekstuff.com/2011/04/identify-file-system-type/
 	# https://unix.stackexchange.com/questions/60723/how-do-i-know-if-a-partition-is-ext2-ext3-or-ext4
