@@ -164,6 +164,7 @@ echo "Root permissions are required to install and use rsync "
 sudo echo "Initiating"
 
 #sudo -N
+# https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
 #if [ "$(id -u)" -ne 0 ]; then
 #	echo "Permissions denied. Script will now exit"
 #	exit
