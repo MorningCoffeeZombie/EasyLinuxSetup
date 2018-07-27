@@ -7,6 +7,7 @@ TODAYSTD=`date '+%m/%d/%Y'`
 TODAYISO=`date '+%Y%m%d-%H%M'`
 BOLDFONT=$(tput bold)
 NORMALFONT=$(tput sgr0)
+PERMCHECK=`sudo -n uptime 2>&1|grep "load"|wc -l`
 
 
 #######################
@@ -63,16 +64,19 @@ printf "/boot \t $BOOTDEVICE \t $BOOTTYPE \t $BOOTUUID \n"
 printf "/tmp \t $TMPDEVICE \t $TMPTYPE \t $TMPUUID \n"
 printf "/var \t $VARDEVICE \t $VARTYPE \t $VARUUID \n"
 echo 
-if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ]; then
+
+if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ] && [ $TMPUUID -ne "" ] && [ $VARUUID -ne "" ] ; then
 	echo The /boot UUID may not be share its partition.
 	echo Please restart program, exiting now.
 	exit
-fi&>/dev/null
-if [ $TMPUUID = $VARUUID ]; then
+fi
+
+if [ $TMPUUID = $VARUUID ] && [ $TMPUUID -ne "" ] ; then
 	echo Multi partition mounting is not yet supported by ${0##*/}.
 	echo Please restart program, exiting now.
 	exit
-fi&>/dev/null
+fi
+
 while true; do
     read -p "Is this correct? (y/n) " yn
     case $yn in
@@ -115,6 +119,7 @@ fi
 
 if [ $BOOTWRONG = "true" ]; then
 	echo "Enter your /boot device name"
+	echo "Example: /dev/sda1"
 	read BOOTDEVICE
 	echo "Enter your /boot partition type (remember FAT32=vfat)"
 	read BOOTTYPE
@@ -122,6 +127,7 @@ fi
 
 if [ $TMPWRONG = "true" ]; then
 	echo "Enter your /tmp device name"
+	echo "Example: /dev/sda1"
 	read TMPDEVICE
 	echo "Enter your /tmp partition type (remember FAT32=vfat)"
 	read TMPTYPE
@@ -129,6 +135,7 @@ fi
 
 if [ $VARWRONG = "true" ]; then
 	echo "Enter your /var device name"
+	echo "Example: /dev/sda1"
 	read VARDEVICE
 	echo "Enter your /var partition type (remember FAT32=vfat)"
 	read VARTYPE
@@ -141,14 +148,17 @@ fi
 
 if [ $ALLWRONG = "true" ]; then
 	echo "Enter your /boot device name"
+	echo "Example: /dev/sda1"
 	read BOOTDEVICE
 	echo "Enter your /boot partition type (remember FAT32=vfat)"
 	read BOOTTYPE
 	echo "Enter your /tmp device name"
+	echo "Example: /dev/sda1"
 	read TMPDEVICE
 	echo "Enter your /tmp partition type (remember FAT32=vfat)"
 	read TMPTYPE
 	echo "Enter your /var device name"
+	echo "Example: /dev/sda1"
 	read VARDEVICE
 	echo "Enter your /var partition type (remember FAT32=vfat)"
 	read VARTYPE
@@ -160,15 +170,20 @@ fi
 ##############
 
 echo "Root permissions are required to install and use rsync "
-# Using a benign echo command to trigger password
+# Using a benign echo command to trigger password. This is the user's last chance to quit before writing to drives
 sudo echo "Initiating"
 
-#sudo -N
-# https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
-#if [ "$(id -u)" -ne 0 ]; then
-#	echo "Permissions denied. Script will now exit"
-#	exit
-#fi
+if [ $PERMCHECK -le 0 ]; then
+	echo "This script cannot complete without rsync and the ability to edit /etc/fstab"
+	sudo echo "Please confirm password"
+	PERMCHECK=`sudo -n uptime 2>&1|grep "load"|wc -l`
+fi
+
+if [ $PERMCHECK -le 0 ]; then
+	echo "Permissions insufficient. Script will now exit."
+	exit
+fi
+
 
 #########################
 # MAKE ADDITIONS TO FSTAB
@@ -218,7 +233,7 @@ exit
 
 
 #sudo blkid | grep $BOOTUUID
-
+# rsync, is not preinstalled on a live disk by default...
 
 
 ###################
@@ -226,10 +241,9 @@ exit
 ###################
 
 # with this push the RECAP and OVERRIDE sections have bugs
+# rsync help:	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
+# Sudo check helper:
+	# https://superuser.com/questions/195781/sudo-is-there-a-command-to-check-if-i-have-sudo-and-or-how-much-time-is-left
 # Script now just detects the partition type, do not have to ask the user
 	# https://www.thegeekstuff.com/2011/04/identify-file-system-type/
 	# https://unix.stackexchange.com/questions/60723/how-do-i-know-if-a-partition-is-ext2-ext3-or-ext4
-# rsync, is not preinstalled on a live disk by default...
-# BUG: If the only mount point you  make is /boot you do not get asked to confirm your selections
-# rsync help:	https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/
-
