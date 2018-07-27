@@ -37,6 +37,24 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "Would you like to make a swapfile? (y/n) " yn
+    case $yn in
+        [Yy]* ) SWAPFILE="install"; ; break;;
+        [Nn]* ) SWAPFILE="skip"; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+while true; do
+    read -p "Would you like to make a swapfile? (y/n) " yn
+    case $yn in
+        [Yy]* ) SWAPFILE="install"; break;;
+        [Nn]* ) SWAPFILE="skip"; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 
 # change passwd per variable
 if [ $CHNGPASS = "true" ]; then
@@ -65,6 +83,11 @@ clr-boot-manager set-timeout 5
 clr-boot-manager update
 cp /etc/fstab $BAKDIR/fstab.BAK-$TODAYISO
 echo I have created a backup of fstab your desktop at $BAKDIR/fstab.BAK-$TODAYISO
+
+# Call script to make a swapfile
+if [ $CHNGPASS = "true" ]; then
+	../Agnostic/./swapfileMaker.sh
+fi
 
 # update OS
 sudo eopkg up
