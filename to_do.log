@@ -2,7 +2,9 @@
 SKIP = needs a lot of work before prod
 =====================
 
-
+Add a swapfile maker script to my appInstaller.sh
+	https://www.youtube.com/watch?v=1OEidskpcC0
+	watch at 24min
 Make youtube work in steam browser
 *Move /var to HDD???
 *use: eopkg ur
