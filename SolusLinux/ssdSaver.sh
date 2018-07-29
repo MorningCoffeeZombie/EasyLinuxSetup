@@ -9,6 +9,9 @@ BOLDFONT=$(tput bold)
 NORMALFONT=$(tput sgr0)
 PERMCHECK=`sudo -n uptime 2>&1|grep "load"|wc -l`
 
+eopkg ur
+eopkg rdb
+
 
 #######################
 # QUESTIONS TO SET VARS
@@ -46,9 +49,9 @@ while true; do
 done
 
 # Where will the / (/root) be? Used for editing the proper /etc/fstab.
-echo "Enter device name of the new (non-live) root system: "
-echo "Example: /dev/sda1"
-read DEVICE
+echo "Enter device partition UUID of the new (non-live) root system: "
+read DEVICEUUID
+# NEED to convert UUID to /dev/sdax here
 
 
 ##################
@@ -81,7 +84,7 @@ while true; do
     read -p "Is this correct? (y/n) " yn
     case $yn in
         [Yy]* ) break;;
-        [Nn]* ) echo "Entering override mode"; OVERRIDE=true; break;;
+        [Nn]* ) echo "Entering override mode"; OVERRIDE="true"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -99,15 +102,15 @@ if [ $OVERRIDE = "true" ]; then
 	do
 		case $wrong in
 		"/boot")
-			BOOTWRONG=true; break;;
+			BOOTWRONG="true"; break;;
 		"/tmp")
-			TMPWRONG=true; break;;
+			TMPWRONG="true"; break;;
 		"/var")
-			VARWRONG=true; break;;
+			VARWRONG="true"; break;;
 		"The new /root device")
-			DEVICEWRONG=true; break;;
+			DEVICEWRONG="true"; break;;
 		"Multiple")
-			ALLWRONG=true; echo "Everything is wrong. We'll try this the hard way"; break;;
+			ALLWRONG="true"; echo "Everything is wrong. We'll try this the hard way"; break;;
 		"Nothing, please go back")
 			echo "This script will now continue as-is"; break;;
 		"Quit")
@@ -190,16 +193,16 @@ fi
 #########################
 
 
-sudo mount $DEVICE /run/media/live/
-sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/etc/fstab
+sudo mount $DEVICEDEV /run/media/live/
+sudo echo \# Added $TODAYSTD during live-disk install by ${0##*/}>>/run/media/live/$DEVICEUUID/etc/fstab
 if [ $SSDBOOT = "install" ]; then
-	sudo echo UUID=$BOOTUUID /boot $BOOTTYPE defaults 0 0 >>/run/media/live/etc/fstab
+	sudo echo UUID=$BOOTUUID /boot $BOOTTYPE defaults 0 0 >>/run/media/live/$DEVICEUUID/etc/fstab
 fi
 if [ $SSDTMP = "install" ]; then
-	sudo echo UUID=$TMPUUID /tmp $TMPTYPE defaults 0 1 >>/run/media/live/etc/fstab
+	sudo echo UUID=$TMPUUID /tmp $TMPTYPE defaults 0 1 >>/run/media/$DEVICEUUID/live/etc/fstab
 fi
 if [ $SSDVAR = "install" ]; then
-	sudo echo UUID=$VARUUID /var $VARTYPE defaults 0 1 >>/run/media/live/etc/fstab
+	sudo echo UUID=$VARUUID /var $VARTYPE defaults 0 1 >>/run/media/$DEVICEUUID/live/etc/fstab
 fi
 
 
@@ -211,12 +214,12 @@ fi
 # rsync needs 1. sudo throughout 2. -a to retain permissions 3. probably -v or --progress 4. -delete t clear the destination dir 5. rename the source dirs so they arent used at reboot
 sudo eopkg install rsync -y
 if [ $SSDTMP = "install" ]; then
-	sudo rsync -a -delete --progress /run/media/live/tmp/ $TMPDEVICE/
+	sudo rsync -a -delete --progress /run/media/live/$DEVICEDEV/tmp/ $TMPDEVICE/
 	sudo mv /tmp /tmp.BAK$TODAYISO
 fi
 
 if [ $SSDVAR = "install" ]; then
-	sudo rsync -a -delete --progress /run/media/live/var/ $VARDEVICE/
+	sudo rsync -a -delete --progress /run/media/live/$DEVICEDEV/var/ $VARDEVICE/
 	sudo mv /var /var.BAK$TODAYISO
 fi
 
@@ -225,7 +228,7 @@ fi
 
 
 
-umount $DEVICE
+umount $DEVICEDEV
 exit
 ##################
 # UNUSED RESOURCES
