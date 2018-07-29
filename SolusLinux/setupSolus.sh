@@ -40,17 +40,17 @@ done
 while true; do
     read -p "Would you like to make a swapfile? (y/n) " yn
     case $yn in
-        [Yy]* ) SWAPFILE="install"; ; break;;
+        [Yy]* ) SWAPFILE="install"; break;;
         [Nn]* ) SWAPFILE="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 while true; do
-    read -p "Would you like to make a swapfile? (y/n) " yn
+    read -p "Install OS updates now? (y/n) " yn
     case $yn in
-        [Yy]* ) SWAPFILE="install"; break;;
-        [Nn]* ) SWAPFILE="skip"; break;;
+        [Yy]* ) UPDATE="install"; break;;
+        [Nn]* ) UPDATE="skip"; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
@@ -90,7 +90,9 @@ if [ $CHNGPASS = "true" ]; then
 fi
 
 # update OS
-sudo eopkg up
+if [ $UPDATE = "install" ]; then
+	sudo eopkg up
+fi
 
 # have user check kernel and drivers
 inxi -Fx
