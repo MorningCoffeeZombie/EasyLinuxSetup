@@ -1,1 +1,37 @@
+
+Get the new Solus ISO (refresh) and install via Rufus from a linux system.
+
+Turn on Intel Thunderbolt
+Try changing AHCI mode to the pcie mode in BIOS
+
+
+Add this line into my UEFI boot message (adding it where i have the nvme_load=yes)
+		https://community.wd.com/t/linux-support-for-wd-black-nvme-2018/225446/8
+	nvme_core.default_ps_max_latency_us=5500 # save to /etc/kernel/cmdline
+		acpiphp.disable=1 pcie_aspm=off
+	clr-boot-manager update
+
+
+Install "efibootmgr"
+	run	efibootmgr -v
+	create a boot entry if needed
+
+
+How to move /EFI/ directory around to other drives:
+	https://askubuntu.com/questions/923470/ubuntu-17-refuses-to-boot-from-pcie-disk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 http://forum.asrock.com/forum_posts.asp?TID=6024&title=boot-options-explained
