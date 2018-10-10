@@ -21,7 +21,8 @@ How to move /EFI/ directory around to other drives:
 	https://askubuntu.com/questions/923470/ubuntu-17-refuses-to-boot-from-pcie-disk
 
 
-
+/etc/kernel/cmdline
+nvme_load=Yes nomodeset nvme_core.default_ps_max_latency_us=5500 acpihp.disable=1 pcie_aspm=off
 
 
 
