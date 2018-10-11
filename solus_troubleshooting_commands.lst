@@ -1,16 +1,16 @@
-COMMAND			USAGE
--------			-----
-inxi -Fx	Display detailed system info
-eopkg up	Upgrade Solus & packages to most resent version
-eopkg rdb	Refresh the installed-package database
-eopkg ur	Update Solus repo
-usysconf run -f		Used as a 'quick fix' solution to Solus issues
-clr-boot-manager set-timeout 5		Provides 5 seconds, during boot, for user to choose their kernel
-clr-boot-manager 	Update	Refresh Linux's knowledge of available kernels at time of boot
-init 1	  Initiate Single user mode (so certain /var and /tmp files aren't being written to)
-init 5	  Initiate [regular] user mode...this undoes init 1
-e2fsck -f /dev/sda1 Run this from a live disk (and use the sda that is having issues) to fix any 'ex2_lookup inode reference' issues
-
+#COMMAND		USAGE
+#-------			-----
+inxi -Fx	#Display detailed system info
+eopkg up	#Upgrade Solus & packages to most resent version
+eopkg rdb	#Refresh the installed-package database
+eopkg ur	#Update Solus repo
+usysconf run -f		#Used as a 'quick fix' solution to Solus issues
+clr-boot-manager set-timeout 5		#Provides 5 seconds, during boot, for user to choose their kernel
+clr-boot-manager Update	#Refresh Linux's knowledge of available kernels at time of boot
+init 1	  #Initiate Single user mode (so certain /var and /tmp files aren't being written to)
+init 5	  #Initiate [regular] user mode...this undoes init 1
+e2fsck -f /dev/sda1 #Run this from a live disk (and use the sda that is having issues) to fix any 'ex2_lookup inode reference' issues
+eopkg check # Check integrity of all install packages
 
 
 
