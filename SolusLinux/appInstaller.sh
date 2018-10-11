@@ -76,27 +76,28 @@ fi
 
 
 # All kernels
-sudo eopkg install linux-headers -y
-sudo eopkg install screenfetch -y
-sudo eopkg install steam -y
-sudo eopkg install gimp -y
-sudo eopkg install kolourpaint -y
-sudo eopkg install wine -y
-sudo eopkg install grsync -y
-sudo eopkg install git -y
-sudo eopkg install make -y
-sudo eopkg install bleachbit -y
-sudo eopkg install notepadqq -y
-sudo eopkg install nano -y
-sudo eopkg install vim -y
+sudo eopkg install linux-headers -y	# Default compatibility
+sudo eopkg install efibootmgr -y	# UEFI compatibility boot configurator
+sudo eopkg install screenfetch -y	# Print system specs to terminal
+sudo eopkg install steam -y		# Gaming
+sudo eopkg install gimp -y		# Avanced image editor
+sudo eopkg install kolourpaint -y	# Basic image editor
+sudo eopkg install wine -y		# Windows application compatibility
+sudo eopkg install grsync -y		# GUI for rsync, file copying tool
+sudo eopkg install git -y		# Software dev
+sudo eopkg install make -y		# Software compilation tool
+sudo eopkg install bleachbit -y		# System maintenance/cleaning tool
+sudo eopkg install notepadqq -y		# Basic text editor
+sudo eopkg install nano -y		# Basic text editor
+sudo eopkg install vim -y		# Basic text editor
 
 
 
 
 # Non-essential settings configurator
 #sudo eopkg install lightdm-gtk-greeter-settings -y
-#sudo eopkg install snapd -y
-#sudo eopkg install flatpak -y
+#sudo eopkg install snapd -y		# Linux application compatibility
+#sudo eopkg install flatpak -y		# Linux application compatibility
 
 
 
