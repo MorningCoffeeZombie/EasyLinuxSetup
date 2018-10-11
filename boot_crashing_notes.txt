@@ -5,11 +5,14 @@ Turn on Intel Thunderbolt
 Try changing AHCI mode to the pcie mode in BIOS
 
 
+THIS SEEMS TO HAVE WORKED:
 Add this line into my UEFI boot message (adding it where i have the nvme_load=yes)
 		https://community.wd.com/t/linux-support-for-wd-black-nvme-2018/225446/8
 	nvme_core.default_ps_max_latency_us=5500 # save to /etc/kernel/cmdline
 		acpiphp.disable=1 pcie_aspm=off
 	clr-boot-manager update
+
+
 
 
 Install "efibootmgr"
