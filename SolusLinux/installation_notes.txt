@@ -2,20 +2,20 @@
 #################################
 ## FROM GPARTED ON THE LIVE DISK:
 #################################
-Make a GPT partition table on the SSD - If your motherboard uses BIOS this partition must be MBR(msdos)
+Make a GPT partition table on the SSD - If your motherboard still uses BIOS this partition must be MBR(msdos)
 	Make a 1gb partition labeled "boot"
 		This partition must be FAT32 type (aka 'vfat')
 		Mark flags with "boot", "esp", and "hidden"
 	Format the remainder of the drive as EXT4 labeled "OS" or the os name
 
-Make a GPT partition table on the HDD - If your motherboard uses BIOS this partition must be MBR(msdos)
+Make a GPT partition table on the HDD - If your motherboard still uses BIOS this partition must be MBR(msdos)
 	Make a SWAP partition that is 1.5x the side of your RAM
 		Label it SWAP
 		aka "linux-swap" type
 	Leave an amount of unallocated space that is [reasonable for /tmp and /var]
-		I used 40gb
-	Make an EXT4 partition that for the remainder of the space
-		Partition type = ext4
+		I used 30gb
+	Make an EXT2 or EXT4 partition that for the remainder of the space
+		Partition type = ext2 [or] ext4
 
 
 #################################
@@ -68,7 +68,7 @@ Run the below command to check your current kernel and what video drivers you ar
 	inxi -Fx
 If your kernel is not current and you are on generic drivers AND you installed the OS as described above:
 Navigate to /etc/fstab and add the following lines:
-	## I added this to correct video drivers and kernel compatibility 
+	## Correct video drivers and kernel compatibility 
 	UUID=x /boot vfat defaults 0 0
 Replace the 'x' in 'UUID=x' with the UUID of the /boot partition you made above
 	You may find this information in the 'Disks' or 'gParted' tools
@@ -77,7 +77,7 @@ If it worked run the following commands:
 	clr-boot-manager update
 	eopkg up
 	clr-boot-manager update
-Once complete use DoFlisky to install the correct/latest drivers
+Once complete use DoFlicky to install the correct/latest drivers
 
 
 #################################
