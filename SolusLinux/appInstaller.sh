@@ -82,6 +82,7 @@ sudo eopkg install screenfetch -y	# Print system specs to terminal
 sudo eopkg install steam -y		# Gaming
 sudo eopkg install gimp -y		# Avanced image editor
 sudo eopkg install kolourpaint -y	# Basic image editor
+sudo eopkg install obs-studio -y	# Screen recorder/video editor
 sudo eopkg install wine -y		# Windows application compatibility
 sudo eopkg install grsync -y		# GUI for rsync, file copying tool
 sudo eopkg install git -y		# Software dev
