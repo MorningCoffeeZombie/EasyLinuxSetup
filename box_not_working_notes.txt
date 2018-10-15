@@ -1,0 +1,20 @@
+# Start vbox services
+/etc/init.d/vboxdrv setup
+sudo modprobe vboxdrv
+
+
+# Check GPU driver compatibilties
+glxinfo
+lspci | grep -i vga
+
+
+
+
+
+uninstall LTS headers & vbox
+	reinstall vbox
+Go to the software center and search for "kernel header". Install linux-current-headers-4.12.7 and  reconfigure virtualbox
+
+
+
+https://getsol.us/articles/software/virtualbox/en/
