@@ -3,12 +3,20 @@
 ######################################
 
 
-Windows:
-	C:\Windows\System32\drivers\etc
+# PRIORITIES
+############
+	1. Write a killswitch
+		a. service v. alias?
+	2. write a manager for OpenVPN server lists
+		a. Find fastest connection
+		b. auto-connect...or something like it
+	3. make a good hosts file
+	
 
 
 
-
+# Notes
+#######
 https://security.stackexchange.com/questions/183177/openvpn-kill-switch-on-linux
 https://thetinhat.com/tutorials/misc/linux-vpn-drop-protection-firewall.html
 
