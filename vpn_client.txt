@@ -1,0 +1,24 @@
+######################################
+#Killswitch & Improvements for OpenVPN
+######################################
+
+
+
+
+
+
+https://security.stackexchange.com/questions/183177/openvpn-kill-switch-on-linux
+https://thetinhat.com/tutorials/misc/linux-vpn-drop-protection-firewall.html
+
+Make a separate widget to modify hosts file and block ad/spam traffic
+	location: /etc/hosts
+
+
+
+
+
+
+
+
+
+
