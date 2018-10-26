@@ -8,7 +8,6 @@ echo "Solus Alias Linker"
 # DEBIAN
 ########
 
-
 alias 'apt-get'=eopkg
 alias 'sudo apt-get'='sudo eopkg'	#not working
 
