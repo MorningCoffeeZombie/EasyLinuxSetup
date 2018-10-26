@@ -8,8 +8,17 @@ Windows:
 
 
 
+
 https://security.stackexchange.com/questions/183177/openvpn-kill-switch-on-linux
 https://thetinhat.com/tutorials/misc/linux-vpn-drop-protection-firewall.html
+
+I could use an alias to mean something like: ./startkillswitch.sh
+	id have to make the alias permanent
+	or i could make an actual linux command/service
+
+
+
+
 
 Make a separate widget to modify hosts file and block ad/spam traffic
 	location: /etc/hosts
