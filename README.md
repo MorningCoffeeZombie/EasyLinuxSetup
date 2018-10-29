@@ -1,4 +1,4 @@
-![Solus OS Logo](https://solus-project.com/imgs/logo.jpg)
+![Solus OS Logo](https://getsol.us/imgs/logo.jpg)
 
 # Dependencies
 rsync # Used in ssdSaver.sh
