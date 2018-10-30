@@ -1,21 +1,21 @@
 #!/bin/sh
-# Any script that references this one will need to backup and edit /etc/fstab
 # This script will edit /etc/fstab
 
 TODAYISO=`date '+%Y%m%d-%H%M'`
+SWAPSIZE="0"
 
+# Questionnaire: how much swap?
+while [ $SWAPSIZE -le 0 ]; do
+	echo "How many GB would you like the swapfile to be? (type 'quit' to exit) "
+	read SWAPSIZE
+	if [[ $SWAPSIZE = *quit*]; then
+		exit
+	fi
+	declare -i SWAPSIZE
+done
 
-echo "How many GB would you like the swapfile to be? "
-read SWAPSIZE
-declare -i SWAPSIZE
-
-# Check user input
-if [ $SWAPSIZE -le 0 ]; then
-	echo $SWAPSIZE "is not an integer > 0. Restart the script"
-	exit
-fi
-
-
+# Backup fstab to be safe
+sudo cp /etc/fstab /etc/fstab.BAK$TODAYISO
 
 
 # Turn off swap for good measure
