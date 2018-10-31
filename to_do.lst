@@ -41,11 +41,9 @@ Prt Scr - print screen button does not work
 	xev	package to download
 	list of keysyms	wiki.linuxquestions.org/wiki/List_of_Keysyms_Recognised_by_Xmodmap
 install eldewrito halo
-speed up group loading and a bunch of other things
-	https://www.youtube.com/watch?v=jW4GFGOIUjc
+
 	
-	
-install github
+
 install (some emulators)
 
 autostart apps with the "desktop settings" menu
@@ -60,6 +58,7 @@ DONE - things that are done that i would redo if ever needed in the future
 *make gedit searchable by 'notes" and screenshot searchable by 'snipping' and kolourpaint searchable by "paint"
 *		/usr/share/applications/org.gnome.gedit.desktop
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
+*		can this be done via 'sudo sed' command in a single line?
 make num-lock on when booting
 	'x > dm > slick-greeter > activate-numlock'
 *change login screen bg
