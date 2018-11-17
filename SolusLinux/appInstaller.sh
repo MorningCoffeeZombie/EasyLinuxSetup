@@ -92,6 +92,7 @@ sudo eopkg install bleachbit -y		# System maintenance/cleaning tool
 sudo eopkg install notepadqq -y		# Basic text editor
 sudo eopkg install nano -y		# Basic text editor
 sudo eopkg install vim -y		# Basic text editor
+sudo eopkg install nmap -y		# Network scanner
 
 
 
