@@ -1,6 +1,0 @@
-
-I moved /usr/lib32/libGL.so.1
-	and
-	/usr/lib32/libGL.so.1
-	to "libGL.so.1.BAK" in their respective locations due to issues with steam
-	https://askubuntu.com/questions/834254/steam-libgl-error-no-matching-fbconfigs-or-visuals-found-libgl-error-failed-t/903488

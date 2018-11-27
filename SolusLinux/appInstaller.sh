@@ -77,6 +77,7 @@ fi
 
 # All kernels
 sudo eopkg install linux-headers -y	# Default compatibility
+sudo eopkg install kernel-headers -y	# Default compatibility
 sudo eopkg install virtualbox -y	# Virtual machine app
 sudo eopkg install efibootmgr -y	# UEFI compatibility boot configurator
 sudo eopkg install screenfetch -y	# Print system specs to terminal

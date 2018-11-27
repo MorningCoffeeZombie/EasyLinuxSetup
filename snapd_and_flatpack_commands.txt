@@ -1,5 +1,6 @@
-SNAPPY COMMANDS
-===============
+#################
+# SNAPPY COMMANDS
+#################
 
 # Install Snappy and a webbased GUI
 sudo install snapd
@@ -18,3 +19,15 @@ snap list
 # See all details and commands for a snap
 snap info $APPNAME
 
+
+
+##################
+# FLATPAK COMMANDS
+##################
+
+
+# Install flatpak
+sudo eopkg install flatpak
+
+# Visit https://flathub.org to find paks to install
+# Futher help http://docs.flatpak.org/en/latest/using-flatpak.html
