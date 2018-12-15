@@ -13,6 +13,7 @@ user_pref("toolkit.cosmeticAnimations.enabled", false);	// Default = true. Disab
 
 // UI
 user_pref("browser.urlbar.clickSelectsAll", true);	// Default = false. Select all text when you click in the URL bar
+user_pref("browser.urlbar.suggest.searches", false);	// Default = true. Don't suggest searchable items in address bar
 user_pref("security.dialog_enable_delay", 0);	// The amount of miliseconds to wait before allowing user to install new addon. Default = 1000
 user_pref("extensions.getAddons.maxResults", 25);	// Amount of results to display when searching for addons. Default = 15
 //user_pref("browser.download.dir", /home/$USER/Desktop);	// Change the download directory
@@ -47,8 +48,8 @@ user_pref("app.shield.optoutstudies.enabled", false);	// Dis/Allows Mozilla from
 
 
 // RETIRED BY MOZILLA
-//network.http.pipelining	boolean field
-//network.http.pipelining.maxrequests	integer field
+//network.http.pipelining	// boolean field
+//network.http.pipelining.maxrequests	// integer field
 
 
 
