@@ -1,0 +1,16 @@
+
+IRC
+	"freenode" network
+		#Solus - Support channel.
+		#Solus-Chat - Off-topic channel.
+		#Solus-Dev - Development-related discussions.
+		#Solus-LiveStream - Channel used for discussion during Hackfests and other official Solus live streams.
+
+Reddit
+	https://www.reddit.com/r/SolusProject/
+
+GetSol.us
+	https://getsol.us/forums/
+	https://getsol.us/help-center/home/
+
+
