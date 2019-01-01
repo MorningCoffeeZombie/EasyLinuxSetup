@@ -26,9 +26,10 @@ user_pref("layout.spellcheckDefault", 2);	// Default = 1. Enable spell check eve
 
 
 // COMPATABILITY
-user_pref("extensions.checkCompatibility", false);	// Enable/Disable compatability checks for addons. Default = ture
+user_pref("extensions.checkCompatibility", false);	// Enable/Disable compatability checks for addons. Default = true
 user_pref("general.warnOnAboutConfig", false);	// Don't warn users when visiting 'about:config'. Default = true
 user_pref("browser.shell.checkDefaultBrowser", false);	// Bug you to make Firefox your default browser.
+user_pref("dom.event.clipboardevents.enabled", true);	// Allows you to properly use copy/paste in Google sheets.
 
 
 // CONNECTIVITY
