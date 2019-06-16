@@ -1,0 +1,2 @@
+sudo eopkg install --reinstall qt5-base qt5-x11extras qtstyleplugins
+

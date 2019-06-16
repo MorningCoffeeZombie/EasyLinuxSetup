@@ -6,7 +6,7 @@
 sudo install snapd
 sudo snap install snapweb
 
-# Run the below command and copy the output to a web browers with the address of "localhost:4200"
+# Run the below command and copy the output to a web browser with the address of "localhost:4200"
 snapweb.generate-token
 # If you poweroff the snap interface (on the settings menu) you will reboot your entire machine.
 
