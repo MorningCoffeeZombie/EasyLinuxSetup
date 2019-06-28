@@ -20,32 +20,32 @@ eopkg rdb
 
 # Boot support for UEFI systems
 while true; do
-    read -p "Are you installing on an SSD or a UEFI system? (y/n) " yn
-    case $yn in
-        [Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; BOOTDEVICE=`findfs UUID=$BOOTUUID`; BOOTTYPE=`blkid -o export $BOOTDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
-        [Nn]* ) SSDBOOT="skip"; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Are you installing on an SSD or a UEFI system? (y/n) " yn
+	case $yn in
+		[Yy]* ) SSDBOOT="install"; echo "Enter the UUID of your /boot drive: "; read BOOTUUID; BOOTDEVICE=`findfs UUID=$BOOTUUID`; BOOTTYPE=`blkid -o export $BOOTDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
+		[Nn]* ) SSDBOOT="skip"; break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 # SSD support for /tmp
 while true; do
-    read -p "Boot /tmp from another drive (SSD support)? (y/n) " yn
-    case $yn in
-        [Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; TMPDEVICE=`findfs UUID=$TMPUUID`; TMPTYPE=`blkid -o export $TMPDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
-        [Nn]* ) SSDTMP="skip"; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Boot /tmp from another drive (SSD support)? (y/n) " yn
+	case $yn in
+		[Yy]* ) SSDTMP="install"; echo "Enter the UUID for your /tmp drive: "; read TMPUUID; TMPDEVICE=`findfs UUID=$TMPUUID`; TMPTYPE=`blkid -o export $TMPDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
+		[Nn]* ) SSDTMP="skip"; break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 # SSD support for /var
 while true; do
-    read -p "Boot /var from another drive (SSD support)? (y/n) " yn
-    case $yn in
-        [Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; VARDEVICE=`findfs UUID=$VARUUID`; VARYPE=`blkid -o export $VARDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
-        [Nn]* ) SSDVAR="skip"; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Boot /var from another drive (SSD support)? (y/n) " yn
+	case $yn in
+	[Yy]* ) SSDVAR="install"; echo "Enter the UUID for your /var drive: "; read VARUUID; VARDEVICE=`findfs UUID=$VARUUID`; VARYPE=`blkid -o export $VARDEVICE | grep '^TYPE' | cut -d"=" -f2`; break;;
+		[Nn]* ) SSDVAR="skip"; break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 # Where will the / (/root) be? Used for editing the proper /etc/fstab.
@@ -69,7 +69,7 @@ printf "/var \t $VARDEVICE \t $VARTYPE \t $VARUUID \n"
 echo 
 
 if [ $BOOTUUID = $TMPUUID ] || [ $BOOTUUID = $VARUUID ] && [ $TMPUUID -ne "" ] && [ $VARUUID -ne "" ] ; then
-	echo The /boot UUID may not be share its partition.
+	echo The /boot UUID may not share its partition.
 	echo Please restart program, exiting now.
 	exit
 fi
@@ -81,12 +81,12 @@ if [ $TMPUUID = $VARUUID ] && [ $TMPUUID -ne "" ] ; then
 fi
 
 while true; do
-    read -p "Is this correct? (y/n) " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) echo "Entering override mode"; OVERRIDE="true"; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Is this correct? (y/n) " yn
+	case $yn in
+		[Yy]* ) break;;
+		[Nn]* ) echo "Entering override mode"; OVERRIDE="true"; break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 

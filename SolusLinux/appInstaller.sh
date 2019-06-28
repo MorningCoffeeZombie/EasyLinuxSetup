@@ -7,21 +7,21 @@
 
 
 while true; do
-    read -p "Make Firefox faster and more private? (y/n) " yn
-    case $yn in
-        [Yy]* ) FFBOOST="install"; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Make Firefox faster and more private? (y/n) " yn
+	case $yn in
+		[Yy]* ) FFBOOST="install"; break;;
+		[Nn]* ) break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 while true; do
-    read -p "Install a backup kernel? (y/n) " yn
-    case $yn in
-        [Yy]* ) KERNELBAK="install"; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
-    esac
+	read -p "Install a backup kernel? (y/n) " yn
+	case $yn in
+		[Yy]* ) KERNELBAK="install"; break;;
+		[Nn]* ) break;;
+		* ) echo "Please answer yes or no.";;
+	esac
 done
 
 
@@ -44,7 +44,7 @@ sudo eopkg up -y
 
 
 # LTS Kernel
-if [[ $(uname -r) = *lts* ]] || [ $KERNELBAK = "install" ]; then
+if [[ $(uname -r) = *lts* ]] && [ $KERNELBAK = "install" ]; then
 	sudo eopkg install linux-lts -y
 	sudo eopkg install bbswitch -y
 	sudo eopkg install broadcom-sta -y
@@ -59,7 +59,7 @@ if [[ $(uname -r) = *lts* ]] || [ $KERNELBAK = "install" ]; then
 fi
 
 # Current Kernel
-if [[ $(uname -r) = *current* ]] || [ $KERNELBAK = "install" ]; then
+if [[ $(uname -r) = *current* ]] && [ $KERNELBAK = "install" ]; then
 	sudo eopkg install linux-current -y
 	sudo eopkg install bbswitch-current -y
 	sudo eopkg install broadcom-sta-current -y
@@ -77,26 +77,32 @@ fi
 
 # All kernels
 sudo eopkg install linux-headers -y	# Default compatibility
-sudo eopkg install kernel-headers -y	# Default compatibility
+sudo eopkg install kernel-headers -y# Default compatibility
 sudo eopkg install virtualbox -y	# Virtual machine app
 sudo eopkg install efibootmgr -y	# UEFI compatibility boot configurator
 sudo eopkg install screenfetch -y	# Print system specs to terminal
-sudo eopkg install steam -y		# Gaming
-sudo eopkg install gimp -y		# Avanced image editor
+sudo eopkg install steam -y			# Gaming
+sudo eopkg install gimp -y			# Avanced image editor
 sudo eopkg install kolourpaint -y	# Basic image editor
 sudo eopkg install obs-studio -y	# Screen recorder/video editor
-sudo eopkg install wine -y		# Windows application compatibility
+sudo eopkg install wine -y			# Windows application compatibility
 sudo eopkg install grsync -y		# GUI for rsync, file copying tool
-sudo eopkg install git -y		# Software dev
-sudo eopkg install make -y		# Software compilation tool
-sudo eopkg install gcc -y		# C language compilation tool
-sudo eopkg install lua51 -y		# Lua language compatibility
+sudo eopkg install git -y			# Software dev
+sudo eopkg install make -y			# Software compilation tool
+sudo eopkg install gcc -y			# C language compilation tool
+sudo eopkg install lua51 -y			# Lua language compatibility
 sudo eopkg install luajit -y		# Lua compilation tool
 sudo eopkg install bleachbit -y		# System maintenance/cleaning tool
 sudo eopkg install notepadqq -y		# Basic text editor
-sudo eopkg install nano -y		# Basic text editor
-sudo eopkg install vim -y		# Basic text editor
-sudo eopkg install nmap -y		# Network scanner
+sudo eopkg install nano -y			# Basic text editor
+sudo eopkg install vim -y			# Basic text editor
+sudo eopkg install nmap -y			# Network scanner
+sudo eopkg install audacity -y		# Audio editor
+sudo eopkg install kdenlive -y		# Video editor
+sudo eopkg install obs-studio -y	# Screen recorder
+
+
+
 
 
 
