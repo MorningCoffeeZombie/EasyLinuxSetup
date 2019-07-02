@@ -106,13 +106,12 @@ sudo eopkg install obs-studio -y	# Screen recorder
 
 
 
-
 # Non-essential settings configurator
 #sudo eopkg install lightdm-gtk-greeter-settings -y
 #sudo eopkg install snapd -y		# Linux application compatibility
 #sudo eopkg install flatpak -y		# Linux application compatibility
 #sudo eopkg install remmina -y	# Connect to windows RDP (remote desktops) devices.
-
+#sudo eopkg install xdotool -y		# I/O simulator  (simulate mouse/keyboard inputs & autoclicks)
 
 
 
