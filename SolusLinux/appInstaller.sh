@@ -99,8 +99,9 @@ sudo eopkg install vim -y			# Basic text editor
 sudo eopkg install nmap -y			# Network scanner
 sudo eopkg install audacity -y		# Audio editor
 sudo eopkg install kdenlive -y		# Video editor
-sudo eopkg install obs-studio -y	# Screen recorder
-
+sudo eopkg install filezilla -y     # FTP GUI
+sudo eopkg install audacity -y      # Audio editor
+sudo eopkg install dolphin-emu -y   # Gamecube emulator for ROMs
 
 
 
