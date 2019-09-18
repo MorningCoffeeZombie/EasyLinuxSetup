@@ -101,7 +101,9 @@ sudo eopkg install audacity -y		# Audio editor
 sudo eopkg install kdenlive -y		# Video editor
 sudo eopkg install filezilla -y     # FTP GUI
 sudo eopkg install audacity -y      # Audio editor
-sudo eopkg install dolphin-emu -y   # Gamecube emulator for ROMs
+sudo eopkg install dolphin-emu -y	# Gamecube emulator for ROMs
+sudo eopkg install sqlite3 -y		# SQL browser/editor
+sudo eopkg install sqlitebrowser -y	# SQL browser/editor
 
 
 
