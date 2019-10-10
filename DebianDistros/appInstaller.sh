@@ -21,6 +21,7 @@ function fun_install_standard(){
 	sudo apt-get install sqlitebrowser -y		# SQL database GUI
 	sudo apt-get install gcc -y			# C language compiler
 	sudo apt-get install chkrootkit -y		# Scan OS to determine if locally infected with rootkits
+	sudo apt-get install nmap -y			# Networks scanning tool
 
 	# Non-Essentials
 	sudo apt-get install luajit -y			# Lua code compiler
