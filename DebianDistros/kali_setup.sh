@@ -4,48 +4,7 @@
 # SETTING UP KALI
 #################
 
-function fun_vbox_active(){
-	VBoxClient --clipboard
-	VBoxClient --draganddrop
-	sudo adduser $USER vboxsf
-	sudo VBoxControl sharedfolder list --automount
-}
-
-
-# GENERAL
-sudo apt-get install git -y			# Coding version control & public repos
-sudo apt-get install gcc -y			# C language compiler
-sudo apt-get install kolourpaint -y	# Simple image editor
-sudo apt-get install winetricks -y	# Support for wine
-sudo apt-get install grsync -y		# GUI for rsync
-sudo apt-get install obs-studio -y	# Screen capturing software/gaming
-sudo apt-get install screenfetch -y	# Display system info to terminal
-sudo apt-get install nano -y		# Simple terminal text editor
-
-# KALI SPECIFIC
-sudo apt-get install preload -y		# Installs & preloads common Kali resources
-sudo apt-get install bleachbit -y	# Shred files and remove temp/cache
-sudo apt-get install bum -y			# "Boot Up Manager" - disabled unnecessary services/apps run sudo apt-get install during bootum
-sudo apt-get install gnome-do -y	# Execute apps from keyboard commands
-sudo apt-get install apt-file -y	# List contents of a package without have to install or fetch it
-sudo apt-get install scrub -y		# Secure deletion program
-sudo apt-get install shutter -y		# Screenshot tool for desktop
-sudo apt-get install tor -y			# Onion routing web browser / anonymity
-sudo apt-get install chkrootkit -y	# Scan OS to determine if locally infected with rootkits
-sudo apt-get install metagoofil -y	# Reverse image lookups
-sudo apt-get install recon-ng -y	# Opensource recon tool
-sudo apt-get install httrack -y		# Download and mirror whole websites
-#sudo apt-get install mono-mcs -y	# C# compiler
-#sudo apt-get install mono-gmcs -y	# C# compiler
-#sudo apt-get install mono-devel -y	# C# compiler
-#sudo apt-get install liblog4net-cil-dev -y		# C# compiler
-#sudo apt-get install mono-complete -y			# C# compiler
-#sudo apt-get install ca-certificates-mono -y	# C# compiler
-#sudo apt-get install mono-xsp4 -y	# C# compiler
-sudo apt-get install openvas -y		# OpenVAS framework for assessing vulnerabilities on a network
-sudo apt-get install openvas-cli -y	# OpenVAS framework for assessing vulnerabilities on a network
-sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
-
+# See /EasyLinuxSetup/DebianDistros/appInstaller.sh for list of packages to install.
  
 
 
@@ -141,7 +100,13 @@ cd LOIC/
 # Before opening OpenVAS for the first time you must use the "openvas initial setup" program. CLI name is `openvas-setup`
 	# It will display a critical password THAT YOU MUST NOT LOOSE
 		# Default username is "admin"
+openvas-feed-update	# This will update ovas - should be done each use (even if slow)
+# https://127.0.01:9392 & https://localhost:9392	These are the web portals to access ovas. They MUST have https:// in front. Web browser should throw warning...just add exception and continue forward.
+# Don't use any 'easy setup wizard' type helpers to make your scans
 
+
+# NETWORK SNIFFING
+##################
 
 
 

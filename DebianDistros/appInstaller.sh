@@ -7,6 +7,7 @@ NORMALFONT=$(tput sgr0)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+REPOLOCATION=$(pwd)
 
 
 function fun_detect_virtualization(){
@@ -117,6 +118,21 @@ function fun_install_kali(){
 	sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
 }
 
+function fun_git_kali(){
+	git clone https://github.com/leebaird/discover.git
+	git clone https://github.com/brannondorsey/naive-hashcat
+	curl -L -o dicts/rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+	git clone https://github.com/NewEraCracker/LOIC
+	cd LOIC/
+	./loic.sh install
+	./loic.sh update
+}
+
+echo "Some programs may be installed via Git. Where would you like the repos saved? "
+read REPOLOCATION
+printf "Git repoos will be saved to: ${GREEN}${BOLDFONT}$REPOLOCATION${NORMALFONT}${NC}\n"
+
+
 if [[ ${VMBRAND,,} = "virualbox" ]] || [[ ${VIRTSTATUS,,} = "virtual" ]]; then
 	while true; do
 		printf "This script believes your machine is: ${BOLDFONT}${VIRTSTATUS^^}${NORMALFONT}\n"
@@ -133,6 +149,11 @@ fi
 if [[ $(uname -n) = *kali* ]]; then
 	printf "${GREEN}${BOLDFONT}KALI LINUX DETECTED${NORMALFONT}${NC}\n"
 	fun_install_kali
+	cd $REPOLOCATION
+	fun_git_kali
+	openvas-setup>>openvas_pword.txt
+	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (saved in openvas_pword.txt)${NORMALFONT}${NC}\n"
+	printf "${RED}${BOLDFONT}TOR SHOULD BE DOWNLOADED FROM OFFICIAL SITE! (not Kali repo)${NORMALFONT}${NC}\n"
 elif [[ $(uname -a) = *ebian* ]]; then
 	printf "${GREEN}${BOLDFONT}STANDARD DEBIAN BASE DETECTED${NORMALFONT}${NC}\n"
 	fun_install_standard
