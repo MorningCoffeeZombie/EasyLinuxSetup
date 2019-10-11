@@ -104,6 +104,7 @@ sudo eopkg install audacity -y      # Audio editor
 sudo eopkg install dolphin-emu -y	# Gamecube emulator for ROMs
 sudo eopkg install sqlite3 -y		# SQL browser/editor
 sudo eopkg install sqlitebrowser -y	# SQL browser/editor
+sudo eopkg install etcher -y		# Disk image writer utility
 
 
 

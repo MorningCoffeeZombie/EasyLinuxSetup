@@ -20,6 +20,7 @@ sudo apt-get install winetricks -y	# Support for wine
 sudo apt-get install grsync -y		# GUI for rsync
 sudo apt-get install obs-studio -y	# Screen capturing software/gaming
 sudo apt-get install screenfetch -y	# Display system info to terminal
+sudo apt-get install nano -y		# Simple terminal text editor
 
 # KALI SPECIFIC
 sudo apt-get install preload -y		# Installs & preloads common Kali resources
@@ -43,7 +44,7 @@ sudo apt-get install httrack -y		# Download and mirror whole websites
 #sudo apt-get install mono-xsp4 -y	# C# compiler
 sudo apt-get install openvas -y		# OpenVAS framework for assessing vulnerabilities on a network
 sudo apt-get install openvas-cli -y	# OpenVAS framework for assessing vulnerabilities on a network
-sudo apt-get install openvas-scanner -y	# OpenVAS framework for assessing vulnerabilities on a network
+sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
 
  
 
