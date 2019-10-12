@@ -124,7 +124,6 @@ function fun_install_kali(){
 		wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
 		apt-get update
 		apt-get install tor deb.torproject.org-keyring
-	
 }
 
 function fun_git_kali(){
@@ -146,7 +145,7 @@ echo "Some programs may be installed via Git. Where would you like the repos sav
 read REPOLOCATION
 printf "Git repoos will be saved to: ${GREEN}${BOLDFONT}$REPOLOCATION${NORMALFONT}${NC}\n"
 
-if [[ $(uname -n) = *kali* ]]; then
+if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = *kali* ]]; then
 	printf "It looks like you're using ${BOLDFONT}Kali Linux${NORMALFONT}\n"
 	printf "Please enter a secondary use to avoid relying on root\n"
 	read NONROOTUSER
@@ -166,8 +165,14 @@ if [[ ${VMBRAND,,} = "virualbox" ]] || [[ ${VIRTSTATUS,,} = "virtual" ]]; then
 	done
 fi
 
-if [[ $(uname -n) = *kali* ]]; then
+if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = *kali* ]]; then
 	printf "${GREEN}${BOLDFONT}KALI LINUX DETECTED${NORMALFONT}${NC}\n"
+	printf "${BOLDFONT}Resetting default SSH keys (backups in /etc/ssh/keys_backup_ssh)${NORMALFONT}\n"
+	# Backup and replace default SSH keys
+		cd /etc/ssh
+		mkdir keys_backup_ssh
+		mv ssh_host_* keys_backup_ssh
+		dpkg-reconfigure openssh-server
 	fun_install_kali
 	cd $REPOLOCATION
 	fun_git_kali
@@ -175,7 +180,8 @@ if [[ $(uname -n) = *kali* ]]; then
 	usermod -aG sudo $NONROOTUSER
 	openvas-setup>>openvas_pword.txt
 	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (saved in openvas_pword.txt)${NORMALFONT}${NC}\n"
-	printf "${RED}${BOLDFONT}TOR SHOULD BE DOWNLOADED FROM OFFICIAL SITE! (not Kali repo)${NORMALFONT}${NC}\n"
+	printf "${RED}${BOLDFONT}DON'T FORGET TO EDIT /etc/proxychains.conf AND SWAP \"strict_chain\" FOR \"dynamic_chain\"${NORMALFONT}${NC}\n"
+	printf "${RED}${BOLDFONT}CHANGE YOUR DEFAULT ROOT PASSWORD...IT'S STILL \"toor\" ISN'T IT...${NORMALFONT}${NC}\n"
 elif [[ $(uname -a) = *ebian* ]]; then
 	printf "${GREEN}${BOLDFONT}STANDARD DEBIAN BASE DETECTED${NORMALFONT}${NC}\n"
 	fun_install_standard
