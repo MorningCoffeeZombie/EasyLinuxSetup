@@ -51,6 +51,7 @@ function fun_vbox_active(){
 function fun_install_standard(){
 	sudo apt-get update -y
 	sudo apt-get upgrade -y
+	# General:
 	sudo apt-get install git -y				# Coding version control & public repos
 	sudo apt-get install gedit -y			# Simple text editor
 	sudo apt-get install nano -y			# Simple text editor for the terminal
@@ -103,7 +104,6 @@ function fun_install_kali(){
 	sudo apt-get install apt-file -y	# List contents of a package without have to install or fetch it
 	sudo apt-get install scrub -y		# Secure deletion program
 	sudo apt-get install shutter -y		# Screenshot tool for desktop
-	#sudo apt-get install tor -y			# Onion routing web browser / anonymity
 	sudo apt-get install chkrootkit -y	# Scan OS to determine if locally infected with rootkits
 	sudo apt-get install metagoofil -y	# Reverse image lookups
 	sudo apt-get install recon-ng -y	# Opensource recon tool
@@ -118,12 +118,13 @@ function fun_install_kali(){
 	sudo apt-get install openvas -y		# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-cli -y	# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
+	#sudo apt-get install tor -y			# Onion routing web browser / anonymity
 	# Properly install tor:	(use the most recent, official, version rather than Kali's which may be outdated
 		echo 'deb https://deb.torproject.org/torproject.org stretch main
 		deb-src https://deb.torproject.org/torproject.org stretch main' > /etc/apt/sources.list.d/tor.list
 		wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
 		apt-get update
-		apt-get install tor deb.torproject.org-keyring
+		apt-get install tor deb.torproject.org-keyring -y
 }
 
 function fun_git_kali(){
@@ -138,8 +139,12 @@ function fun_git_kali(){
 
 function fun_alias_kali(){
 	alias airmon='airmon-ng'
+	alias aireplay='aireplay-ng'
+	alias airreplay='aireplay-ng'
+	alias aircrack='aircrack-ng'
 	printf "Don't forget, aliases are saved at: \t${BOLDFONT}~/.bash_aliases${NORMALFONT}\n"
 } 
+
 
 echo "Some programs may be installed via Git. Where would you like the repos saved? "
 read REPOLOCATION
@@ -178,6 +183,9 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 	fun_git_kali
 	adduser $NONROOTUSER
 	usermod -aG sudo $NONROOTUSER
+	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
+	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
+	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
 	openvas-setup>>openvas_pword.txt
 	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (saved in openvas_pword.txt)${NORMALFONT}${NC}\n"
 	printf "${RED}${BOLDFONT}DON'T FORGET TO EDIT /etc/proxychains.conf AND SWAP \"strict_chain\" FOR \"dynamic_chain\"${NORMALFONT}${NC}\n"
@@ -193,5 +201,6 @@ fi
 
 
 
-echo "Installations complete"
+echo "Installations complete!"
+echo "(don't forget a dist-upgrade)"
 exit
