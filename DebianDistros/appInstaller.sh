@@ -6,7 +6,7 @@ BOLDFONT=$(tput bold)
 NORMALFONT=$(tput sgr0)
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+NC='\033[0m'	# No Color
 REPOLOCATION=$(pwd)
 
 
@@ -186,13 +186,16 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
-	openvas-setup>>openvas_pword.txt
-	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (saved in openvas_pword.txt)${NORMALFONT}${NC}\n"
+	openvas-setup
+	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (read last few lines of activity){NORMALFONT}${NC}\n"
+	printf "${RED}${BOLDFONT}TO RESET OPENVAS KEY RUN \`openvasmd –user=admin –new-password=new_password\`{NORMALFONT}${NC}\n"
 	printf "${RED}${BOLDFONT}DON'T FORGET TO EDIT /etc/proxychains.conf AND SWAP \"strict_chain\" FOR \"dynamic_chain\"${NORMALFONT}${NC}\n"
 	printf "${RED}${BOLDFONT}CHANGE YOUR DEFAULT ROOT PASSWORD...IT'S STILL \"toor\" ISN'T IT...${NORMALFONT}${NC}\n"
 elif [[ $(uname -a) = *ebian* ]]; then
 	printf "${GREEN}${BOLDFONT}STANDARD DEBIAN BASE DETECTED${NORMALFONT}${NC}\n"
 	fun_install_standard
+else
+	printf "${BOLDFONT}OS BASE / PACKAGE MANAGER CANNOT BE VERIFIED - PLEASE REVIEW${NORMALFONT}\n"
 fi
 
 
