@@ -109,7 +109,7 @@ function fun_install_kali(){
 	sudo apt-get install recon-ng -y	# Opensource recon tool
 	sudo apt-get install httrack -y		# Download and mirror whole websites
 	sudo apt-get install mono-mcs -y	# C# compiler
-	#sudo apt-get install mono-gmcs -y	# C# compiler
+	#sudo apt-get install mono-gmcs -y	# C# compiler. Deprecated to mono-xbuild
 	sudo apt-get install mono-xbuild -y	# C# compiler
 	sudo apt-get install mono-devel -y	# C# compiler
 	sudo apt-get install liblog4net-cil-dev -y		# C# compiler
@@ -132,6 +132,8 @@ function fun_git_kali(){
 	git clone https://github.com/leebaird/discover.git
 	git clone https://github.com/brannondorsey/naive-hashcat
 	curl -L -o dicts/rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+	wget "http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2"
+	bzip2 -d rockyou.txt.bz2
 	git clone https://github.com/NewEraCracker/LOIC
 	cd LOIC/
 	./loic.sh install
