@@ -83,6 +83,8 @@ function fun_install_standard(){
 }
 
 function fun_install_kali(){
+	sudo apt-get update -y
+	sudo apt-get upgrade -y
 	# General:
 	sudo apt-get install git -y			# Coding version control & public repos
 	sudo apt-get install gcc -y			# C language compiler
@@ -116,6 +118,13 @@ function fun_install_kali(){
 	sudo apt-get install openvas -y		# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-cli -y	# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
+	# Properly install tor:	(use the most recent, official, version rather than Kali's which may be outdated
+		echo 'deb https://deb.torproject.org/torproject.org stretch main
+		deb-src https://deb.torproject.org/torproject.org stretch main' > /etc/apt/sources.list.d/tor.list
+		wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
+		apt-get update
+		apt-get install tor deb.torproject.org-keyring
+	
 }
 
 function fun_git_kali(){
@@ -128,10 +137,21 @@ function fun_git_kali(){
 	./loic.sh update
 }
 
+function fun_alias_kali(){
+	alias airmon='airmon-ng'
+	printf "Don't forget, aliases are saved at: \t${BOLDFONT}~/.bash_aliases${NORMALFONT}\n"
+} 
+
 echo "Some programs may be installed via Git. Where would you like the repos saved? "
 read REPOLOCATION
 printf "Git repoos will be saved to: ${GREEN}${BOLDFONT}$REPOLOCATION${NORMALFONT}${NC}\n"
 
+if [[ $(uname -n) = *kali* ]]; then
+	printf "It looks like you're using ${BOLDFONT}Kali Linux${NORMALFONT}\n"
+	printf "Please enter a secondary use to avoid relying on root\n"
+	read NONROOTUSER
+	printf "You have entered ${BOLDFONT}$NONROOTUSER${NORMALFONT}\n"
+fi
 
 if [[ ${VMBRAND,,} = "virualbox" ]] || [[ ${VIRTSTATUS,,} = "virtual" ]]; then
 	while true; do
@@ -151,6 +171,8 @@ if [[ $(uname -n) = *kali* ]]; then
 	fun_install_kali
 	cd $REPOLOCATION
 	fun_git_kali
+	adduser $NONROOTUSER
+	usermod -aG sudo $NONROOTUSER
 	openvas-setup>>openvas_pword.txt
 	printf "${RED}${BOLDFONT}OPENVAS-SETUP WILL PROVIDE A PASSWORD! (saved in openvas_pword.txt)${NORMALFONT}${NC}\n"
 	printf "${RED}${BOLDFONT}TOR SHOULD BE DOWNLOADED FROM OFFICIAL SITE! (not Kali repo)${NORMALFONT}${NC}\n"
