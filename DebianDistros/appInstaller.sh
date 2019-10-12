@@ -108,13 +108,14 @@ function fun_install_kali(){
 	sudo apt-get install metagoofil -y	# Reverse image lookups
 	sudo apt-get install recon-ng -y	# Opensource recon tool
 	sudo apt-get install httrack -y		# Download and mirror whole websites
-	#sudo apt-get install mono-mcs -y	# C# compiler
+	sudo apt-get install mono-mcs -y	# C# compiler
 	#sudo apt-get install mono-gmcs -y	# C# compiler
-	#sudo apt-get install mono-devel -y	# C# compiler
-	#sudo apt-get install liblog4net-cil-dev -y		# C# compiler
-	#sudo apt-get install mono-complete -y			# C# compiler
-	#sudo apt-get install ca-certificates-mono -y	# C# compiler
-	#sudo apt-get install mono-xsp4 -y	# C# compiler
+	sudo apt-get install mono-xbuild -y	# C# compiler
+	sudo apt-get install mono-devel -y	# C# compiler
+	sudo apt-get install liblog4net-cil-dev -y		# C# compiler
+	sudo apt-get install mono-complete -y			# C# compiler
+	sudo apt-get install ca-certificates-mono -y	# C# compiler
+	sudo apt-get install mono-xsp4 -y	# C# compiler
 	sudo apt-get install openvas -y		# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-cli -y	# OpenVAS framework for assessing vulnerabilities on a network
 	sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
