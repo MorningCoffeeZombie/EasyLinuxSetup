@@ -60,7 +60,7 @@ DONE - things that are done that i would redo if ever needed in the future
 *		Keywords=Note;Notes;Notepad	*add to an existing 'keywords' list
 *		can this be done via 'sudo sed' command in a single line?
 make num-lock on when booting
-	'x > dm > slick-greeter > activate-numlock'
+	use the 'dconf' program: 'x > dm > slick-greeter > activate-numlock'
 *change login screen bg
 *	use the 'dconf' program and navigate to 'x > dm > slick-greeter > background'
 *	default locaiton is /usr/share/backgrounds/solus/
@@ -69,7 +69,7 @@ SKIP	echo background=/home/rdogg/Pictures/greeter_screen.jpg>>/etc/lightdm/light
 *	rename the existing jpg to .jpg.BAK and copy the new file into its place
 *Settings > Details > Default apps
 *	Make "image viewer" default instead of GIMP
-*Move /tmp to HDD
+*Move /tmp to HDD 
 Setup the TRIM command to keep SSD clean
 	I chose the fstab method (adding 'discard' to options) from the youtube video
 	https://www.youtube.com/watch?v=9kl0bYLFXSg
