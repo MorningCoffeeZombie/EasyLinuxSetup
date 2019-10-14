@@ -168,6 +168,9 @@ sudo aireplay-ng -0 20 -a 00:01:02:03:04:05 -c 09:08:07:06:05:04 wlan0mon
 sudo aircrack-ng wpa_log-01.cap -w /path/to/wordlist.txt
 	# wpa_log-01.cap	# The output file named in previous step but suffixed with the specific dump number
 	# -w /path/to/wordlist.txt	# The dictionary to begin brute forcing with
+# General cleanup/setting things back to normal
+sudo airmon-ng stop wlan0mon
+sudo service network-manager start
 
 
 # GPU BASED HASH/KEY CRACKING
