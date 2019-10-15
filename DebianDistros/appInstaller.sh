@@ -27,7 +27,7 @@ function fun_detect_virtualization(){
 	VMTEST6=${VMTEST6,,}
 
 	# Assert general data: vm or physical
-	if [[ "$VMTEST4" = *vm* ]] && [[ ! "$VMTEST6" = *none* ]]; then	# Based on the most agnostic tests, determine if in a VM
+	if [[ "$VMTEST4" = *vm* ]] && [[ "$VMTEST6" != *none* ]]; then	# Based on the most agnostic tests, determine if in a VM
 		VIRTSTATUS="virtual"
 		printf "${BOLDFONT}MACHINE DETECTED AS VIRTUAL${NORMALFONT}\n"
 	else
@@ -159,7 +159,7 @@ printf "Git repoos will be saved to: ${GREEN}${BOLDFONT}$REPOLOCATION${NORMALFON
 
 if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = *kali* ]]; then
 	printf "It looks like you're using ${BOLDFONT}Kali Linux${NORMALFONT}\n"
-	printf "Please enter a secondary use to avoid relying on root\n"
+	printf "Please enter a secondary username to create - avoid relying on root\n"
 	read NONROOTUSER
 	printf "You have entered ${BOLDFONT}$NONROOTUSER${NORMALFONT}\n"
 fi
