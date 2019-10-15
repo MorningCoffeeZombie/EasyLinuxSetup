@@ -110,6 +110,7 @@ function fun_install_kali(){
 	sudo apt-get install httrack -y		# Download and mirror whole websites
 	sudo apt-get install p7zip-full -y	# 7z decompression
 	sudo apt-get install hashcat -y		# GPU password cracking
+	sudo apt-get install armitage -y	# GUI for Metasploit framework
 	sudo apt-get install mono-mcs -y	# C# compiler
 	#sudo apt-get install mono-gmcs -y	# C# compiler. Deprecated to mono-xbuild
 	sudo apt-get install mono-xbuild -y	# C# compiler
