@@ -105,6 +105,12 @@ openvas-feed-update	# This will update ovas - should be done each use (even if s
 # Don't use any 'easy setup wizard' type helpers to make your scans
 
 
+# Basic Aircrack documentation:
+###############################
+# https://www.aircrack-ng.org/doku.php?id=newbie_guide
+# https://www.aircrack-ng.org/doku.php?id=injection_test
+
+
 # WEP ROUTER CRACKING / NETWORK SNIFFING
 ########################################
 iwconfig	# Find your wifi adapter (we'll use wlan0 for example)

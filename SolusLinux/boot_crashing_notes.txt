@@ -1,5 +1,6 @@
 
 Get the new Solus ISO (refresh) and install via Rufus from a linux system.
+	Must use Rufus in "dd" (not ISO) mode for Linux
 
 Turn on Intel Thunderbolt
 Try changing AHCI mode to the pcie mode in BIOS
