@@ -194,6 +194,7 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 		mv ssh_host_* keys_backup_ssh
 		dpkg-reconfigure openssh-server
 	fun_install_kali
+	cd /home/$USER/Desktop/
 	cd $REPOLOCATION
 	fun_git_kali
 	adduser $NONROOTUSER

