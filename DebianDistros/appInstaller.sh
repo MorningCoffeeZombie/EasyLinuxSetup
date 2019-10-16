@@ -152,6 +152,12 @@ function fun_git_kali(){
 	unzip wce_v1_41beta_universal.zip
 }
 
+function fun_git_coffeezombie_scripts(){
+	git clone https://github.com/MorningCoffeeZombie/vswitch.git
+	git clone https://github.com/MorningCoffeeZombie/General.git
+	git clone https://github.com/MorningCoffeeZombie/EasyLinuxSetup.git
+}
+
 function fun_alias_kali(){
 	alias airmon='airmon-ng'
 	alias aireplay='aireplay-ng'
@@ -170,6 +176,8 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 	printf "Please enter a secondary username to create - avoid relying on root\n"
 	read NONROOTUSER
 	printf "You have entered ${BOLDFONT}$NONROOTUSER${NORMALFONT}\n"
+	adduser $NONROOTUSER
+	usermod -aG sudo $NONROOTUSER
 fi
 
 if [[ ${VMBRAND,,} = "virualbox" ]] || [[ ${VIRTSTATUS,,} = "virtual" ]]; then
@@ -197,8 +205,8 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 	cd /home/$USER/Desktop/
 	cd $REPOLOCATION
 	fun_git_kali
-	adduser $NONROOTUSER
-	usermod -aG sudo $NONROOTUSER
+	cd /home/$USER/Desktop/
+	fun_git_coffeezombie_scripts
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
 	printf "${GREEN}${BOLDFONT}THIS PART TAKES A LONNNNGGGG TIME (but we're almost done) - SIT TIGHT!${NORMALFONT}${NC}\n"
@@ -210,6 +218,8 @@ if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = 
 elif [[ $(uname -a) = *ebian* ]]; then
 	printf "${GREEN}${BOLDFONT}STANDARD DEBIAN BASE DETECTED${NORMALFONT}${NC}\n"
 	fun_install_standard
+	cd /home/$USER/Desktop/
+	fun_git_coffeezombie_scripts
 else
 	printf "${BOLDFONT}OS BASE / PACKAGE MANAGER CANNOT BE VERIFIED - PLEASE REVIEW${NORMALFONT}\n"
 fi
