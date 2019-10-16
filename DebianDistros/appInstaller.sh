@@ -143,6 +143,13 @@ function fun_git_kali(){
 	cd LOIC/
 	./loic.sh install
 	./loic.sh update
+	mkdir WCE
+	cd WCE
+	echo "WINDOWS CREDENTIALS EDITOR (non-git) INSTALLATION:">>install_commands.sh
+	echo "wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip">>install_commands.sh
+	echo "unzip wce_v1_41beta_universal.zip">>install_commands.sh
+	wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip
+	unzip wce_v1_41beta_universal.zip
 }
 
 function fun_alias_kali(){

