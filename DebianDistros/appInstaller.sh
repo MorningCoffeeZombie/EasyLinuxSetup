@@ -136,6 +136,7 @@ function fun_git_kali(){
 	git clone https://github.com/brannondorsey/naive-hashcat
 	git clone https://github.com/duyetdev/bruteforce-database.git
 	git clone https://github.com/danielmiessler/SecLists.git
+	git clone https://github.com/brav0hax/smbexec.git
 	curl -L -o dicts/rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 	wget "http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2"
 	bzip2 -d rockyou.txt.bz2
