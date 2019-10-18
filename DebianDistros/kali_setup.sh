@@ -510,7 +510,7 @@ rdesktop -u jimmy -g 100% -PKD 192.168.0.111
 
 
 # BRUTE FORCE WEB FORMS
-############	#	# ###########
+#######################
 # Make sure burpsuite is configured with your browser
 # Enable FoxyProxy via Firefox/Chrome extensions
 # In BurpSuite GUI enable Proxy > Intercept > (intercept button) ON
@@ -590,6 +590,10 @@ cd /opt/smbexec
 		# To to the IP address folder (a folder with the target's IP for a name). "ntds.net" and "sys" files should exist. Open the text file with the target's IP for a file name.
 			# File may say:	"[!] Error! syshive not specified!"
 			# This is a bug in SMBExec. Fix it by visiting /opt/smbexec/lib/modules/hashdump/hashesdc.rb	
+			# In this file change (approx. line 237) FROM:
+			# dsusers = `python #{Menu.extbin[:dsusers]} #{datatable} #{linktable} --passwordhashes #{local_drop}/#{sys_filename} --passwordhistory #{local_drop}/#{sys_filename} --pwdformat ocl --lmoutfile #{host}.lm --ntoutfile #{host}.nt`
+			# TO:
+			# dsusers = `python #{Menu.extbin[:dsusers]} #{datatable} #{linktable} #{local_drop} --syshive #{local_drop}/#{sys_filename} --passwordhashes --passwordhistory --pwdformat ocl --lmoutfile #{host}.lm --ntoutfile #{host}.nt`
 
 
 
