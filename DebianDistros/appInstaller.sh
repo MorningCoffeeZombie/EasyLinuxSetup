@@ -124,9 +124,12 @@ function fun_install_kali(){
 	sudo apt-get install openvas-scanner -y			# OpenVAS framework for assessing vulnerabilities on a network
 	#sudo apt-get install tor -y			# Onion routing web browser / anonymity
 	# Properly install tor:	(use the most recent, official, version rather than Kali's which may be outdated
+		sudo apt-get install apt-transport-https -y
 		echo 'deb https://deb.torproject.org/torproject.org stretch main
 		deb-src https://deb.torproject.org/torproject.org stretch main' > /etc/apt/sources.list.d/tor.list
-		wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
+		#wget -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo apt-key add -
+		curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --import
+		gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 		apt-get update
 		apt-get install tor deb.torproject.org-keyring -y
 }
@@ -137,20 +140,23 @@ function fun_git_kali(){
 	git clone https://github.com/duyetdev/bruteforce-database.git
 	git clone https://github.com/danielmiessler/SecLists.git
 	git clone https://github.com/brav0hax/smbexec.git
+		printf "1\n\n" | ./smbexec/install.sh
+		# Repo folder will be removed. Program installs to /opt/smbexec/
 	curl -L -o dicts/rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
-	wget "http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2"
-	bzip2 -d rockyou.txt.bz2
+		wget "http://downloads.skullsecurity.org/passwords/rockyou.txt.bz2"
+		bzip2 -d rockyou.txt.bz2
 	git clone https://github.com/NewEraCracker/LOIC
-	cd LOIC/
-	./loic.sh install
-	./loic.sh update
+		cd LOIC/
+		./loic.sh install
+		./loic.sh update
+		cd $REPOLOCATION
 	mkdir WCE
-	cd WCE
-	echo "WINDOWS CREDENTIALS EDITOR (non-git) INSTALLATION:">>install_commands.sh
-	echo "wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip">>install_commands.sh
-	echo "unzip wce_v1_41beta_universal.zip">>install_commands.sh
-	wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip
-	unzip wce_v1_41beta_universal.zip
+		cd WCE
+		echo "WINDOWS CREDENTIALS EDITOR (non-git) INSTALLATION:">>install_commands.sh
+		echo "wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip">>install_commands.sh
+		echo "unzip wce_v1_41beta_universal.zip">>install_commands.sh
+		wget https://www.ampliasecurity.com/research/wce_v1_41beta_universal.zip
+		unzip wce_v1_41beta_universal.zip
 }
 
 function fun_git_coffeezombie_scripts(){
