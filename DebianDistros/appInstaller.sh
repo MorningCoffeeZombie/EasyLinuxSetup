@@ -81,6 +81,7 @@ function fun_install_standard(){
 	sudo apt-get install obs-studio -y		# Screen capturing software/gaming
 	sudo apt-get install screenfetch -y		# Display system info to terminal
 	sudo apt-get install etcher -y			# Disk image writer utility
+	sudo apt-get install gnome-screenshot -y	# Compact screenshotting/snipping tool
 	sudo apt-get install mtr -y			# Network diagnostics
 }
 
@@ -96,6 +97,8 @@ function fun_install_kali(){
 	sudo apt-get install obs-studio -y	# Screen capturing software/gaming
 	sudo apt-get install screenfetch -y	# Display system info to terminal
 	sudo apt-get install nano -y		# Simple terminal text editor
+	sudo apt-get install gnome-screenshot -y	# Compact screenshotting/snipping tool
+	sudo apt-get install mtr -y			# Network diagnostics
 
 	# Kali Specific:
 	sudo apt-get install preload -y		# Installs & preloads common Kali resources
@@ -112,7 +115,6 @@ function fun_install_kali(){
 	sudo apt-get install p7zip-full -y	# 7z decompression
 	sudo apt-get install hashcat -y		# GPU password cracking
 	sudo apt-get install armitage -y	# GUI for Metasploit framework
-	sudo apt-get install mtr -y			# Network diagnostics
 	sudo apt-get install mono-mcs -y	# C# compiler
 	#sudo apt-get install mono-gmcs -y	# C# compiler. Deprecated to mono-xbuild
 	sudo apt-get install mono-xbuild -y	# C# compiler

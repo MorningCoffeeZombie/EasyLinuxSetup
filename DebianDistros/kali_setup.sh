@@ -51,12 +51,13 @@ recon-ng			# Perform basic recon
 ##############
 traceroute www.google.com	# Follow the path packets take to reach their destinations
 nmap -v --tracerout 104.210.194.254	# Traceroute via nmap
+nmap -sn 192.168.1.0/24	# See what local IPs are on a network
 hping3 -S www.pluralsight.com -p 80 -c 3 	# Send a ping-like command when standard ping is being blocked. This specific command checks port 80 for 3 attempts.
 nmap -T4 -v -PN -n -sS --top-ports 100 --max-parallelism 10 -oA nmapSYN 104.210.194.254
 	# -T4 = speed at which nmap executes. 1 is the slowest, 5 is the fastest
 	# -v = verbose mode
 	# -P = don't ping idventified active systems
-	# -N = no resolusion should be made
+	# -N = no resolution should be made
 	# -A = Enable aggressive options 
 	# -sS = a send packet type of send
 		# -sA = an alternative type that ckecks for ACKs and determines firewall rules
