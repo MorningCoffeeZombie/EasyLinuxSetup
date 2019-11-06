@@ -597,7 +597,10 @@ cd /opt/smbexec
 			# dsusers = `python #{Menu.extbin[:dsusers]} #{datatable} #{linktable} #{local_drop} --syshive #{local_drop}/#{sys_filename} --passwordhashes --passwordhistory --pwdformat ocl --lmoutfile #{host}.lm --ntoutfile #{host}.nt`
 
 
-
+# DETECT IF SOMEONE IS RUNNING THEIR PC IN PROMISCUOS MODE
+##########################################################
+map --script=sniffer-detect 123.45.67.89/1011
+	# The IP address is an example of public IP and the / tells nmap to scan the range from 89 to 1011 (just example numbers...)
 
 
 
