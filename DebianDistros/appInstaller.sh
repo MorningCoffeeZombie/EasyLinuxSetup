@@ -206,6 +206,15 @@ if [[ ${VMBRAND,,} = "virualbox" ]] || [[ ${VIRTSTATUS,,} = "virtual" ]]; then
 	done
 fi
 
+while true; do
+	read -p "Make Firefox faster and more private? (y/n) " yn
+	case $yn in
+		[Yy]* ) cp ../Agnostic/resource_firefox_user.js /home/$USER/.mozilla/firefox/*.*/user.js; break;;
+		[Nn]* ) break;;
+		* ) echo "Please answer yes or no.";;
+	esac
+done
+
 if [[ $(uname -n) = *kali* ]] || [[ $(uname -a) = *kali* ]] || [[ $(uname -r) = *kali* ]]; then
 	printf "${GREEN}${BOLDFONT}KALI LINUX DETECTED${NORMALFONT}${NC}\n"
 	printf "${BOLDFONT}Resetting default SSH keys (backups in /etc/ssh/keys_backup_ssh)${NORMALFONT}\n"

@@ -77,7 +77,7 @@ fi
 
 # All kernels
 sudo eopkg install linux-headers -y	# Default compatibility
-sudo eopkg install kernel-headers -y# Default compatibility
+sudo eopkg install kernel-headers -y	# Default compatibility
 sudo eopkg install virtualbox -y	# Virtual machine app
 sudo eopkg install efibootmgr -y	# UEFI compatibility boot configurator
 sudo eopkg install screenfetch -y	# Print system specs to terminal
@@ -115,7 +115,7 @@ sudo eopkg install mtr -y		# Network diagnostics
 #sudo eopkg install lightdm-gtk-greeter-settings -y
 #sudo eopkg install snapd -y		# Linux application compatibility
 #sudo eopkg install flatpak -y		# Linux application compatibility
-#sudo eopkg install remmina -y	# Connect to windows RDP (remote desktops) devices.
+#sudo eopkg install remmina -y		# Connect to windows RDP (remote desktops) devices.
 #sudo eopkg install xdotool -y		# I/O simulator  (simulate mouse/keyboard inputs & autoclicks)
 
 
