@@ -90,6 +90,7 @@ sudo eopkg install grsync -y		# GUI for rsync, file copying tool
 sudo eopkg install git -y			# Software dev
 sudo eopkg install make -y			# Software compilation tool
 sudo eopkg install gcc -y			# C language compilation tool
+sudo eopkg install mono -y			# .NET and C++ compiler
 sudo eopkg install lua51 -y			# Lua language compatibility
 sudo eopkg install luajit -y		# Lua compilation tool
 sudo eopkg install bleachbit -y		# System maintenance/cleaning tool

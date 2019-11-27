@@ -41,5 +41,5 @@ sudo echo /home/.swapfile	none	swap	sw	0	0>>/etc/fstab
 # UNUSED RESOURCES
 ##################
 
-# List current swepability options
-#sudo swapon -s
+# List currently swapable options
+#swapon -s

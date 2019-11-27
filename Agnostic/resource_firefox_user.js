@@ -20,13 +20,13 @@ user_pref("extensions.getAddons.maxResults", 25);	// Amount of results to displa
 user_pref("browser.startup.homepage", https://www.google.com/);	// Default homepage
 user_pref("browser.tabs.warnOnClose", false);	// Warn me before closing multiple tabs. Default = true
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);	// Show sponsored content on 'new tab' page. Default = true
-user_pref("accessibility.force_disabled", 1);	// Disbale 'accessibility' mode for the handicapped. Default = 0.
+user_pref("accessibility.force_disabled", 1);	// Disable 'accessibility' mode for the handicapped. Default = 0.
 user_pref("extensions.pocket.enabled", false);	// Disable the 'pocket' thing. Default = true
 user_pref("layout.spellcheckDefault", 2);	// Default = 1. Enable spell check everywhere not just multiline text fields. "0" disables entirely
 
 
 // COMPATABILITY
-user_pref("extensions.checkCompatibility", false);	// Enable/Disable compatability checks for addons. Default = true
+user_pref("extensions.checkCompatibility", false);	// Enable/Disable compatibility checks for addons. Default = true
 user_pref("general.warnOnAboutConfig", false);	// Don't warn users when visiting 'about:config'. Default = true
 user_pref("browser.shell.checkDefaultBrowser", false);	// Bug you to make Firefox your default browser.
 user_pref("dom.event.clipboardevents.enabled", true);	// Allows you to properly use copy/paste in Google sheets.
@@ -34,14 +34,14 @@ user_pref("dom.event.clipboardevents.enabled", true);	// Allows you to properly 
 
 // CONNECTIVITY
 user_pref("network.http.max-persistent-connections-per-server", 8);	// Max number of connections you may have to a server. Default = 6
-//user_pref("network.http.max-connections", 1350);	// Controlls the number of connections to a server. Defualt = 900
+//user_pref("network.http.max-connections", 1350);	// Controls the number of connections to a server. Default = 900
 
 
 // PRIVACY
 user_pref("dom.battery.enabled", false);	// AllowPrevent website owners from tracking your computer's battery status. Default = true
 user_pref("dom.event.clipboardevents.enabled", false);	// Allow/prevent websites from viewing what you copy/paste. Default = true
 //user_pref("media.navigator.enabled", false);	// Allow/prevent websites from tracking your microphone and camera connected to the PC. Default = true
-user_pref("privacy.trackingprotection.enabled", true);	// Enabled tracking protection. Deafult = false
+user_pref("privacy.trackingprotection.enabled", true);	// Enabled tracking protection. Default = false
 user_pref("privacy.donottrackheader.enabled", true);	// Send a "do not track" request when visiting sites. Default = false
 user_pref("app.shield.optoutstudies.enabled", false);	// Dis/Allows Mozilla from studying your PC. Default = true
 

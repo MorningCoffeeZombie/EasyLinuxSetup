@@ -34,7 +34,7 @@ alias cls=clear
 
 
 #######
-#NOTES
+# NOTES
 #######
 
 # View all current aliases:
