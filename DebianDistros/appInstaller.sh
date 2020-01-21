@@ -82,9 +82,21 @@ function fun_install_standard(){
 	sudo apt-get install screenfetch -y		# Display system info to terminal
 	sudo apt-get install etcher -y			# Disk image writer utility
 	sudo apt-get install gnome-screenshot -y	# Compact screenshotting/snipping tool
+		#sudo apt-get install spectacle -y	# This is the KDE/Kubuntu screenshot tool
 	sudo apt-get install mtr -y			# Network diagnostics
 	sudo apt-get install pip -y			# Python libraries/repo
 		sudo pip3 install --upgrade pip	# Update pip
+	sudo apt install python3 -y				# Python
+	sudo apt install python2.4 -y			# Python
+	sudo apt install python-qt4 -y			# Python
+	sudo apt install python-qt5 -y			# Python
+	sudo apt install python-usb -y			# Python
+	sudo apt install python3-usb -y			# Python
+	sudo apt install python2.4 -y			# Python
+	sudo apt install python-qt4 -y			# Python
+	sudo apt install python-qt5 -y			# Python
+	sudo apt install python-usb -y			# Python
+	sudo apt install python3-usb -y			# Python
 }
 
 function fun_install_kali(){
