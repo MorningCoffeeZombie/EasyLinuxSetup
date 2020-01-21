@@ -107,6 +107,8 @@ sudo eopkg install sqlite3 -y		# SQL browser/editor
 sudo eopkg install sqlitebrowser -y	# SQL browser/editor
 sudo eopkg install etcher -y		# Disk image writer utility
 sudo eopkg install mtr -y		# Network diagnostics
+sudo eopkg install pip -y		# Python libraries/repo
+	sudo pip3 install --upgrade pip	# Update pip
 
 
 

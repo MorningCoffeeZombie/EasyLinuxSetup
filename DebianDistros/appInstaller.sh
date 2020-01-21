@@ -83,6 +83,8 @@ function fun_install_standard(){
 	sudo apt-get install etcher -y			# Disk image writer utility
 	sudo apt-get install gnome-screenshot -y	# Compact screenshotting/snipping tool
 	sudo apt-get install mtr -y			# Network diagnostics
+	sudo apt-get install pip -y			# Python libraries/repo
+		sudo pip3 install --upgrade pip	# Update pip
 }
 
 function fun_install_kali(){
