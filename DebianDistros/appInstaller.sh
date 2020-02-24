@@ -86,6 +86,7 @@ function fun_install_standard(){
 	sudo apt-get install mtr -y			# Network diagnostics
 	sudo apt-get install pip -y			# Python libraries/repo
 		sudo pip3 install --upgrade pip	# Update pip
+		sudo pip install yfinance
 	sudo apt install python3 -y				# Python
 	sudo apt install python2.4 -y			# Python
 	sudo apt install python-qt4 -y			# Python
