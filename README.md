@@ -14,3 +14,13 @@ Scripts, notes, and other documentation for Solus OS Linux distro. The goal of t
 
 x. Read installation_notes.txt at any point to understand the goals of this repo.  
 x. Files prefixed with "resource_" are optional configurations offered throughout the scripts.  
+
+## Common rsync Backup Uses
+`rsync -aAXvP`  
+`rsync -raPv`  
+-	r	recursive  
+-	a	archive mode  
+-	x	preserve extended attributes  
+-	A	preserve ACLs  
+-	v	verbose  
+-	P	show progress  
