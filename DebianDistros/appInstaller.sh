@@ -93,11 +93,6 @@ function fun_install_standard(){
 	sudo apt install python-qt5 -y			# Python
 	sudo apt install python-usb -y			# Python
 	sudo apt install python3-usb -y			# Python
-	sudo apt install python2.4 -y			# Python
-	sudo apt install python-qt4 -y			# Python
-	sudo apt install python-qt5 -y			# Python
-	sudo apt install python-usb -y			# Python
-	sudo apt install python3-usb -y			# Python
 }
 
 function fun_install_kali(){
