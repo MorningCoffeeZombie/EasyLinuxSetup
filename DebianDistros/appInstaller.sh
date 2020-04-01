@@ -85,8 +85,13 @@ function fun_install_standard(){
 		#sudo apt-get install spectacle -y	# This is the KDE/Kubuntu screenshot tool
 	sudo apt-get install mtr -y			# Network diagnostics
 	sudo apt-get install pip -y			# Python libraries/repo
+	sudo apt-get install python-pip -y		# Python libraries/repo
 		sudo pip3 install --upgrade pip	# Update pip
+		sudo pip install --upgrade pip	# Update pip
 		sudo pip install yfinance
+		sudo pip install keyboard
+		sudo pip install Pynput
+		sudo pip install playsound
 	sudo apt install python3 -y				# Python
 	sudo apt install python2.4 -y			# Python
 	sudo apt install python-qt4 -y			# Python
