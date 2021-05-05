@@ -39,7 +39,7 @@ user_pref("network.http.max-persistent-connections-per-server", 8);	// Max numbe
 
 // PRIVACY
 user_pref("dom.battery.enabled", false);	// AllowPrevent website owners from tracking your computer's battery status. Default = true
-user_pref("dom.event.clipboardevents.enabled", false);	// Allow/prevent websites from viewing what you copy/paste. Default = true
+#user_pref("dom.event.clipboardevents.enabled", false);	// Allow/prevent websites from viewing what you copy/paste. Default = true. This prevents copy/paste functions on google sheets.
 //user_pref("media.navigator.enabled", false);	// Allow/prevent websites from tracking your microphone and camera connected to the PC. Default = true
 user_pref("privacy.trackingprotection.enabled", true);	// Enabled tracking protection. Default = false
 user_pref("privacy.donottrackheader.enabled", true);	// Send a "do not track" request when visiting sites. Default = false
